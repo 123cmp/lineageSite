@@ -1,0 +1,21 @@
+<div class="calc">
+
+    <label>
+        <b>Я заплачу</b>
+        <input class="money" type="text" placeholder="Я заплачу">
+    </label>
+    <br/>
+    <label>
+        <b>Я получу</b>
+        <input class="adena" type="text" placeholder="Я получу">
+    </label>
+
+    <button>Пойдет</button>
+</div>
+
+<script>
+    var adenaCalc = new AdenaCalc(
+            $('.money'),
+            $('.adena')
+    );
+</script>

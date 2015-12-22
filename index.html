@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Some site</title>
     <link rel="stylesheet" href="style.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="AdenaCalc.js"></script>
 </head>
 <body>
     <div class="content">
@@ -54,7 +57,31 @@
                 </ul>
             </div>
 
-            <div class="main-content"> Main content </div>
+            <div class="main-content">
+                <!-- /*CALC HERE*/ -->
+                <div class="calc">
+
+                    <label>
+                        <b>Я заплачу</b>
+                        <input class="money" type="text" placeholder="Я заплачу">
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Я получу</b>
+                        <input class="adena" type="text" placeholder="Я получу">
+                    </label>
+                    <br/>
+                    <button>Пойдет</button>
+                </div>
+
+                <script>
+                    var adenaCalc = new AdenaCalc(
+                            $('.money'),
+                            $('.adena')
+                    );
+                </script>
+
+            </div>
 
             <div class="left-content">
                 <div class="contacts">
@@ -79,5 +106,9 @@
             <p>All rights reserved</p>
         </footer>
     </div>
+
+
+
+
 </body>
 </html>
