@@ -1,0 +1,15 @@
+.admin-table{
+    width: 100%;
+
+}
+ td {
+    border: 1px solid dodgerblue;
+    text-align: center;
+}
+
+ th {
+
+     text-align: center !important;
+
+
+ }
