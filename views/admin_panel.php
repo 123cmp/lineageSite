@@ -20,7 +20,7 @@ header("Content-Type: text/html; charset=utf-8");
         <a href="../admin/index.php?game=lineage_classic_rus"> Lineage II Classic (RUS) </a>
         <a href="../admin/index.php?game=lineage_classic_euro"> Lineage II Classic (Euro) </a>
         <a href="../admin/index.php?game=lineage_free"> Lineage (Free) </a>
-        <table class="admin-table">
+        <table class="table table-bordered table-hover">
             <tr>
                 <th>Server Name</th>
                 <th>от 1 кк</th>
