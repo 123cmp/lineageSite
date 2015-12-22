@@ -19,18 +19,26 @@ function AdenaCalc(moneyField, adenaField) {
     self.chosenCoefficient = self.coefficients[0];
 
     moneyField.keyup(function() {
+        calculateMoneyToAdena();
+    });
+
+    adenaField.keyup(function() {
+        calculateAdenaToMoney();
+    });
+
+    function calculateMoneyToAdena() {
         var value = moneyField.val();
         var coefficientId = findCoefficient(value, MONEY_TO_ADENA);
         chooseCoefficient(coefficientId);
         calculate(MONEY_TO_ADENA);
-    });
+    }
 
-    adenaField.keyup(function() {
+    function calculateAdenaToMoney() {
         var value = adenaField.val();
         var coefficientId = findCoefficient(value, ADENA_TO_MONEY);
         chooseCoefficient(coefficientId);
         calculate(ADENA_TO_MONEY);
-    });
+    }
 
     function findCoefficient(value, direction) {
         var coefficientId = 0;
@@ -60,6 +68,11 @@ function AdenaCalc(moneyField, adenaField) {
     function setCoefficients(array) {
         if(!array || !array.length) return;
         self.coefficients = array;
+        if(moneyField.val())
+            calculateMoneyToAdena();
+        else if(adenaField.val())
+            calculateAdenaToMoney();
+
     }
 
     function chooseCoefficient(id) {
