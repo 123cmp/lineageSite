@@ -6,11 +6,36 @@ header("Content-Type: text/html; charset=utf-8");
 <head>
     <meta charset="UTF-8">
     <title>Admin panel</title>
+    <link rel="stylesheet" type="text/css" href="../style/style_admin.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <nav>
+      <a href ="#" id="logo">Admin Panel</a>
+        <ul class="nav pull-right nav-pills">
+          <li><a href="#">Orders</a></li>
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Games</a>
+            <ul class="dropdown-menu">
+              <li><a href="../admin/index.php?game=lineage_rus">Lineage II rus</a></li>
+              <li><a href="../admin/index.php?game=lineage_classic_rus">Lineage II classic rus</a></li>
+              <li><a href="../admin/index.php?game=lineage_classic_euro">Lineage II classic euro</a></li>
+              <li><a href="../admin/index.php?game=lineage_free">Lineage II free</a></li>
+            </ul>
+          </li>
+          <li><a href="../index.php">Home</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 
 <div id="serverModal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div  class="modal-dialog" role="document">
@@ -62,25 +87,23 @@ header("Content-Type: text/html; charset=utf-8");
 </div>
 
 <div class="container" id="all">
-    <h1>Admin Panel</h1>
-
     <div>
-    <a href="#serverModal" role="button" class="btn btn-default" data-toggle="modal">Add server</a>
-        <!--<a href="../admin/index.php?action=add&game=<?=$GLOBALS['game_name']?>">Add server</a>-->
+    
+        <!--<a href="../admin/index.php?action=add&game=<?=$GLOBALS['game_name']?>">Add server</a>
         <a class="btn btn-default" href="../index.php"> Go homepage  </a>
         <a class="btn btn-default" href="../admin/index.php?game=lineage_rus"> Lineage II RUS </a>
         <a class="btn btn-default" href="../admin/index.php?game=lineage_classic_rus"> Lineage II Classic (RUS) </a>
         <a class="btn btn-default" href="../admin/index.php?game=lineage_classic_euro"> Lineage II Classic (Euro) </a>
-        <a class="btn btn-default" href="../admin/index.php?game=lineage_free"> Lineage (Free) </a>
-
+        <a class="btn btn-default" href="../admin/index.php?game=lineage_free"> Lineage (Free) </a>-->
+            <h1 id="tableName"><?=$GLOBALS['game_name']?></h1>
         <table class="table table-bordered table-hover table-responsive">
             <tr>
-                <th>Server Name</th>
-                <th>от 1 кк</th>
-                <th>от 100 кк</th>
-                <th>от 1000 кк</th>
+            <?php foreach ($servers as $key => $s): ?>
+                <th><?=$key?></th>
+                
                 <!--<th></th>-->
-                <th></th>
+            <?php endforeach ?>
+                <th id="buttonTh"><a href="#serverModal" role="button" class="btn btn-default" data-toggle="modal">Add server</a></th>
             </tr>
             <?php foreach ($servers as $s): ?>
                 <tr>
@@ -89,7 +112,7 @@ header("Content-Type: text/html; charset=utf-8");
                     <td><?= $s['100kk'] ?></td>
                     <td><?= $s['1000kk'] ?></td>
                     <!--<td><a href="../admin/index.php?action=edit&id=<?= $s['id'] ?>&game=<?=$GLOBALS['game_name']?>&">Edit</a></td> -->
-                    <td><a class="btn btn-danger" href="../admin/index.php?action=delete&id=<?= $s['id'] ?>&game=<?=$GLOBALS['game_name']?>">Delete</a></td>
+                    <td id="buttonTh"><a class="btn btn-danger" href="../admin/index.php?action=delete&id=<?= $s['id'] ?>&game=<?=$GLOBALS['game_name']?>">Delete</a></td>
                 </tr>
             <?php endforeach ?>
         </table>
