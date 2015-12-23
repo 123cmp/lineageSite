@@ -35,7 +35,8 @@ if ($action == 'add') {
 
     }
     $server = array('server_name' => '', '1kk' => '', '100kk' => '', '1000kk' => '',);
-    include("../views/server_admin.php");
+   
+   // include("../views/server_admin.php");
 
 } else if ($action == 'delete') {
 
@@ -56,7 +57,8 @@ if ($action == 'add') {
     }
 
     $server = server_get($id, $link, $game_name);
-    include("../views/server_admin.php");
+    
+    //include("../views/server_admin.php");
 
 } else {
 

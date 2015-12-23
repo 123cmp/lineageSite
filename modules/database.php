@@ -1,8 +1,8 @@
 <?php
-define('MYSQL_SERVER', 'localhost');
+define('MYSQL_SERVER', '127.0.0.1');
 define('MYSQL_USER', 'root');
 define('MYSQL_PASSWORD', '');
-define('MYSQL_DB', 'lineagesite');
+define('MYSQL_DB', 'lineageSite');
 function db_connect(){
     $link=mysqli_connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB)
     or die("Error: ".mysqli_error($link));
