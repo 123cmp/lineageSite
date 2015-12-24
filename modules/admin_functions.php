@@ -4,7 +4,7 @@
 function servers_all($link, $game_name){
     $query = "SELECT * FROM ".$game_name." ORDER BY id DESC";
 
-    $result = mysqli_query($link,$query);
+    $result = mysqli_query($link, $query);
     if (!$result)
         die(mysqli_error($link));
 

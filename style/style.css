@@ -1,10 +1,17 @@
+
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+
 }
 
 body {
-    background: gray;
+    background: #e7e1e1;
 }
 
 .content {
@@ -13,12 +20,13 @@ body {
     left: 0;
     right: 0;
     margin: 0 auto;
-    background: white;
+
 }
 
 header {
     width: 100%;
-    height: 300px;
+    opacity: 1;
+    height: 235px;
 }
 
 header .logo {
@@ -38,6 +46,7 @@ header .site-name {
     height: 150px;
     line-height: 150px;
     margin-right: 100px;
+
 }
 
 header .main-menu {
@@ -45,13 +54,37 @@ header .main-menu {
     text-align: center;
     clear: both;
     display: block;
-    padding-top: 50px;
+    /*padding-top: 50px;*/
+    background: #111111;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    /*background: rgba(255,255,255,0.7);*/
+    box-shadow: 0 0 10px rgb(87, 87, 87);
 }
 
 header .main-menu li {
     display: inline-block;
-    width: 100px;
+    margin: 0 25px;
+    /* width: 200px; */
+    text-align: center;
+
 }
+
+header .main-menu li a{
+    color: #FFF554;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    position: relative;
+    text-shadow: 0 0 6px #111111
+}
+
+header .main-menu li a:hover {
+    text-shadow: 0 0 6px #FFF554;
+}
+
+
 
 .middle {
     height: 400px;
@@ -60,28 +93,57 @@ header .main-menu li {
 .middle .side-menu {
     float: left;
     width: 25%;
-    margin: 5px 25px;
-    color: #2e2e2e;
+    margin: 0 25px 0 0;
+    color: #FFF554;
+    /*text-shadow: 0 0 6px #FFF554;*/
     height: 400px;
+    background-color: #111111;
+    box-shadow: 0 0 10px rgb(87, 87, 87);
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.middle .side-menu ul {
+    list-style: none;
+}
+
+.middle .side-menu ul li {
+    margin: 10px 0;
 }
 
 .middle .side-menu a {
-    color: #383838;
+    color: white;
+    font-weight: 100;
+    border-bottom: 1px dotted;
 }
 
-
 .middle .main-content {
+    box-shadow: 0 0 10px rgb(87, 87, 87);
     float: left;
     width: 44%;
     display: block;
     height: 400px;
     text-align: center;
+    background-color: #111111;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 .middle .left-content {
+    text-align: center;
+    color: #FFF554;
     float: right;
     width: 25%;
-    height: 400px;
+    height: 150px;
+    box-shadow: 0 0 10px rgb(87, 87, 87);
+    background-color: #111111;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.middle .left-content ul {
+    list-style: none;
 }
 
 footer {
@@ -102,8 +164,104 @@ footer .duplicate-menu li {
 }
 
 .form{
-
     border: 2px solid gray;
     border-radius: 5px;
+}
 
+/*.gradient-transparent {*/
+    /*background: -webkit-linear-gradient(top, rgba(41,41,41,0.8), rgba(41,41,41,1)); !* For Safari 5.1 to 6.0 *!*/
+    /*background: -o-linear-gradient(top, rgba(41,41,41,0.8), rgba(41,41,41,1)); !* For Opera 11.1 to 12.0 *!*/
+    /*background: -moz-linear-gradient(top, rgba(41,41,41,0.8), rgba(41,41,41,1)); !* For Firefox 3.6 to 15 *!*/
+    /*background: linear-gradient(to top, rgba(41,41,41,0.8), rgba(41,41,41,1)); !* Standard syntax (must be last) *!*/
+/*}*/
+
+/*.top-to-bottom {
+    border-width: 3px;
+    border-style: solid;
+    -webkit-border-image:
+            -webkit-gradient(linear, 0 0, 0 100%, from(#030842), to(rgba(0, 0, 0, 0))) 1 100%;
+    -webkit-border-image:
+            -webkit-linear-gradient(#030842, rgba(0, 0, 0, 0)) 1 100%;
+    -moz-border-image:
+            -moz-linear-gradient(#030842, rgba(0, 0, 0, 0)) 1 100%;
+    -o-border-image:
+            -o-linear-gradient(#030842, rgba(0, 0, 0, 0)) 1 100%;
+    border-image:
+            linear-gradient(to bottom, #030842, rgba(0, 0, 0, 0)) 1 100%;
+}*/
+
+
+.calc input {
+    width: 90%;
+    height: 40px;
+    border: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.calc textarea {
+    width: 90%;
+    height: 130px;
+    border: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.calc .second label:first-of-type input {
+    margin-top: 0;
+}
+
+.calc button {
+    width: 90%;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 8px;
+    box-sizing: border-box;
+    background: #FFF554;
+
+}
+
+.calc button:hover {
+    box-shadow: 0 0 10px #FFF554;
+}
+
+.calc h2 {
+    color: #FFF554;
+    margin-bottom: 20px;
+}
+
+.calc .select2-container {
+    width: 90% !important;
+    height: 40px !important;
+}
+
+.select2-selection {
+    height: 40px !important;
+}
+
+.select2-selection__rendered {
+    line-height: 40px !important;
+}
+
+.select2-selection__arrow {
+    height: 40px !important;
+}
+
+.select2-results__option {
+    height: 40px !important;
+    line-height: 40px !important;
 }
