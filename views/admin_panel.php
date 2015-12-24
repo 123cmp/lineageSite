@@ -46,37 +46,40 @@ header("Content-Type: text/html; charset=utf-8");
   </div>
   <div class="modal-body">
   <form  method="post"
-              action="index.php?action=add&id=<?= $_GET['id'] ?>&game=<?= $_GET['game'] ?>">
+              action="index.php?action=add&id=<?= $_GET['id'] ?>&game=<?=$GLOBALS['game_name'] ?>">
             <div class="form-group">
-                <label for="inputName">
-                    Server_name
-                </label>
+                <label for="inputName">Server_name</label>
                 <input type="text" id="inputName" class="form-control" name="server_name"
-                       value="<?= $server['server_name'] ?>" class="form-item" required>
+                        class="form-item" required>
             </div>
 
-            <div class="form-group">
-                <label for="input1kk">
-                    1kk
-                </label>
-                <input type="text" id="input1kk" class="form-control" name="1kk" value="<?= $server['1kk'] ?>"
+            <div class="form-inline form-group">
+                <label class="modallbl"for="sum1">Gold</label>
+                <input type="text" id="sum1" class="form-control" name="sum1"
                        class="form-item" required>
+                <label class="modallbl" for="cost1">Coefficient</label>
+                <input type="text" id="cost1" class="form-control" name="cost1"
+                       class="form-item" required>
+            </div>
 
-            </div>
-            <div class="form-group">
-                <label for="input100kk">
-                    100kk
-                </label>
-                <input type="text" id="input100kk" class="form-control" name="100kk" value="<?= $server['100kk'] ?>"
+            <div class="form-inline form-group">
+                <label class="modallbl"for="sum2">Gold</label>
+                <input type="text" id="sum2" class="form-control" name="sum2"
+                       class="form-item" required>
+                <label class="modallbl" for="cost2">Coefficient</label>
+                <input type="text" id="cost2" class="form-control" name="cost2"
                        class="form-item" required>
             </div>
-            <div class="form-group">
-                <label for="input1000kk">
-                    1000kk
-                </label>
-                <input type="text" id="input1000kk" class="form-control" name="1000kk" value="<?= $server['1000kk'] ?>"
+
+            <div class="form-inline form-group">
+                <label class="modallbl" for="sum3">Gold</label>
+                <input type="text" id="sum3" class="form-control" name="sum3"
+                       class="form-item " required>
+                <label class="modallbl" for="cost3">Coefficient</label>
+                <input type="text" id="cost3" class="form-control" name="cost3"
                        class="form-item" required>
             </div>
+
             <input type="submit" class="btn" value="Save">
 
         </form>
@@ -106,6 +109,7 @@ e
                 <?php endforeach ?>    
                     <!--<td><a href="../admin/index.php?action=edit&id=<?= $s['id'] ?>&game=<?=$GLOBALS['game_name']?>&">Edit</a></td> -->
                     <td id="buttonTh"><a class="btn btn-danger" href="../admin/index.php?action=delete&id=<?= $s['id'] ?>&game=<?=$GLOBALS['game_name']?>">Delete</a></td>
+
                 </tr>
                 
             <?php endforeach ?>

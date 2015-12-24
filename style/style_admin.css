@@ -29,3 +29,14 @@ width: 80pt;
 width:1%;
 white-space:nowrap;
 }
+
+.modallbl{
+
+  margin-right: 10pt;
+  margin-left: 4pt;
+}
+
+#inputName{
+
+  width: 96%;
+}
