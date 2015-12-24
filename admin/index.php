@@ -33,24 +33,24 @@ if ($action == 'add') {
         $game_name = $_GET['game'];
 
         $sum = array($_POST['sum1'], $_POST['sum2'], $_POST['sum3']);
-        $cost = array($_POST['cost1'], $_POST['cost2'] ,$_POST['cost3']);
+        $cost = array($_POST['cost1'], $_POST['cost2'], $_POST['cost3']);
 
-        server_add($link, $game_name,$_POST['server_name'], $sum, $cost );
+        server_add($link, $game_name, $_POST['server_name'], $sum, $cost);
         header("Location: index.php?game=" . $game_name);
 
     }
 
 
     //$server = array('server_name' => '', '1kk' => '', '100kk' => '', '1000kk' => '',);
-   
-   // include("../views/server_admin.php");
+
+    // include("../views/server_admin.php");
 
 } else if ($action == 'delete') {
 
     $id = ($_GET['id']);
 
     $server = server_delete($link, $id, $game_name);
-    header("Location: index.php?game=".$game_name);
+    header("Location: index.php?game=" . $game_name);
 
 } else if ($action == 'edit') {
 
@@ -64,7 +64,7 @@ if ($action == 'add') {
     }
 
     $server = server_get($id, $link, $game_name);
-    
+
     //include("../views/server_admin.php");
 
 } else {

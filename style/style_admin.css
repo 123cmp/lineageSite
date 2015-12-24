@@ -8,10 +8,6 @@
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
 }
 
 #tableName {
@@ -38,5 +34,5 @@ white-space:nowrap;
 
 #inputName{
 
-  width: 96%;
+  width: 61%;
 }
