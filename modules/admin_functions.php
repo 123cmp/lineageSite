@@ -2,6 +2,7 @@
 
 
 function servers_all($link, $game_name){
+
     $query = "SELECT * FROM ".$game_name." ORDER BY id DESC";
 
     $result = mysqli_query($link, $query);
@@ -15,6 +16,7 @@ function servers_all($link, $game_name){
         $row = mysqli_fetch_assoc($result);
         $servers[] = $row;
     }
+
     return $servers;
 }
 
@@ -27,26 +29,32 @@ function server_get($id, $link, $game_name)
     return $article;
 }
 
-function server_add($link, $game_name, $server_name, $_1kk, $_100kk, $_1000kk )
+function server_add($link, $game_name, $server_name, $sum, $cost )
 {
     $server_name =  trim($server_name);
-    $_1kk = trim($_1kk);
-    $_100kk = trim($_100kk);
-    $_1000kk = trim($_1000kk);
-
-    if ($server_name == '')
-        return false;
-
-    $t = "INSERT INTO ".$game_name." (server_name, 1kk, 100kk, 1000kk) VALUES ('%s', '%f', '%f', '%f')";
-    $query = sprintf($t, mysqli_real_escape_string($link, $server_name),
-        mysqli_real_escape_string($link, $_1kk),
-        mysqli_real_escape_string($link, $_100kk),
-        mysqli_real_escape_string($link, $_1000kk));
+    
+    $t = "INSERT INTO ".$game_name." (server_name) VALUES ('%s')";
+    $query = sprintf($t, mysqli_real_escape_string($link, $server_name));
     $result = mysqli_query($link, $query);
 
-    if (!$result)
-        die(mysql_error($link));
-    return true;
+  // $result1 = mysqli_query($link, "SELECT max(id) FROM ".$game_name);
+ //   $row = mysqli_fetch_all($result1);
+    $id = mysqli_insert_id($link);   
+   // $id = (int)$id;
+    $i = 0;
+    while ($i < count($sum)) {
+        $id = (int)$id;
+        $t = "INSERT INTO coefficients (server_id, sum, cost, game_name) VALUES ('%d', '%f', '%f', '%s')";
+    $query = sprintf($t, mysqli_real_escape_string($link, $id),
+        mysqli_real_escape_string($link, $sum[$i]),
+        mysqli_real_escape_string($link, $cost[$i]),
+        mysqli_real_escape_string($link, $game_name));
+    $result = mysqli_query($link, $query);
+
+    $i++;
+        
+    }
+    
 }
 
 

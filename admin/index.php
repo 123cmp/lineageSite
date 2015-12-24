@@ -11,7 +11,9 @@ if (isset($_GET['game'])) {
     $game_name = $_GET['game'];
 
 } else {
+
     $game_name = "lineage_rus";
+
 
 }
 if (isset($_GET['action'])) {
@@ -30,11 +32,16 @@ if ($action == 'add') {
 
         $game_name = $_GET['game'];
 
-        server_add($link, $game_name, $_POST['server_name'], $_POST['1kk'], $_POST['100kk'], $_POST['1000kk']);
+        $sum = array($_POST['sum1'], $_POST['sum2'], $_POST['sum3']);
+        $cost = array($_POST['cost1'], $_POST['cost2'] ,$_POST['cost3']);
+
+        server_add($link, $game_name,$_POST['server_name'], $sum, $cost );
         header("Location: index.php?game=" . $game_name);
 
     }
-    $server = array('server_name' => '', '1kk' => '', '100kk' => '', '1000kk' => '',);
+
+
+    //$server = array('server_name' => '', '1kk' => '', '100kk' => '', '1000kk' => '',);
    
    // include("../views/server_admin.php");
 
@@ -43,7 +50,7 @@ if ($action == 'add') {
     $id = ($_GET['id']);
 
     $server = server_delete($link, $id, $game_name);
-    header("Location: index.php?game=$game_name");
+    header("Location: index.php?game=".$game_name);
 
 } else if ($action == 'edit') {
 

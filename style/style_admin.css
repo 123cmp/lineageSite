@@ -1,0 +1,42 @@
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+#tableName {
+
+ margin-top: 50pt;
+}
+.btn {
+
+width: 80pt;
+
+}
+
+#buttonTh{
+
+width:1%;
+white-space:nowrap;
+}
+
+.modallbl{
+
+  margin-right: 10pt;
+  margin-left: 4pt;
+}
+
+#inputName{
+
+  width: 96%;
+}
