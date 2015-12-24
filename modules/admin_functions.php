@@ -1,7 +1,26 @@
 <?php
 
+function getColNames($link, $table_name){
 
+    $result = mysqli_query($link, "SHOW COLUMNS FROM ".$table_name);
+
+    if (!$result) {
+        echo 'error: ' . mysqli_error($link);
+        exit;
+    }
+   
+    $columns;
+        while ($row = mysql_fetch_assoc($result)) {
+            
+            $columns  += 1;
+
+        }
+    
+    //$columns = implode(", ", string);
+    return $columns;
+}
 function servers_all($link, $game_name){
+
     $query = "SELECT * FROM ".$game_name." ORDER BY id DESC";
 
     $result = mysqli_query($link,$query);

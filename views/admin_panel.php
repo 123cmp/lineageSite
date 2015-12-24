@@ -76,7 +76,6 @@ header("Content-Type: text/html; charset=utf-8");
                 </label>
                 <input type="text" id="input1000kk" class="form-control" name="1000kk" value="<?= $server['1000kk'] ?>"
                        class="form-item" required>
-
             </div>
             <input type="submit" class="btn" value="Save">
 
@@ -85,39 +84,33 @@ header("Content-Type: text/html; charset=utf-8");
 </div>
 </div>
 </div>
-
+e
 <div class="container" id="all">
-    <div>
-    
-        <!--<a href="../admin/index.php?action=add&game=<?=$GLOBALS['game_name']?>">Add server</a>
-        <a class="btn btn-default" href="../index.php"> Go homepage  </a>
-        <a class="btn btn-default" href="../admin/index.php?game=lineage_rus"> Lineage II RUS </a>
-        <a class="btn btn-default" href="../admin/index.php?game=lineage_classic_rus"> Lineage II Classic (RUS) </a>
-        <a class="btn btn-default" href="../admin/index.php?game=lineage_classic_euro"> Lineage II Classic (Euro) </a>
-        <a class="btn btn-default" href="../admin/index.php?game=lineage_free"> Lineage (Free) </a>-->
-            <h1 id="tableName"><?=$GLOBALS['game_name']?></h1>
+   <h1 id="tableName"><?=$GLOBALS['game_name']?></h1>
         <table class="table table-bordered table-hover table-responsive">
             <tr>
-            <?php foreach ($servers as $key => $s): ?>
-                <th><?=$key?></th>
-                
-                <!--<th></th>-->
+            <?php foreach ($servers as  $s):
+                foreach ($s as $key => $v): ?>
+                <th><?=$key?></th> 
+            <?php endforeach; 
+            break;?>
+
+            <th></th>
             <?php endforeach ?>
                 <th id="buttonTh"><a href="#serverModal" role="button" class="btn btn-default" data-toggle="modal">Add server</a></th>
             </tr>
-            <?php foreach ($servers as $s): ?>
-                <tr>
-                    <td><?= $s['server_name'] ?></td>
-                    <td><?= $s['1kk'] ?></td>
-                    <td><?= $s['100kk'] ?></td>
-                    <td><?= $s['1000kk'] ?></td>
+            <tr>
+            <?php foreach ($servers as $s):
+                foreach ($s as $key => $v): ?>
+                <td><?= $s[$key] ?></td>
+                <?php endforeach ?>    
                     <!--<td><a href="../admin/index.php?action=edit&id=<?= $s['id'] ?>&game=<?=$GLOBALS['game_name']?>&">Edit</a></td> -->
                     <td id="buttonTh"><a class="btn btn-danger" href="../admin/index.php?action=delete&id=<?= $s['id'] ?>&game=<?=$GLOBALS['game_name']?>">Delete</a></td>
                 </tr>
+                
             <?php endforeach ?>
         </table>
-    </div>
 </div>
-
+</table>
 </body>
 </html>

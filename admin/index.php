@@ -9,9 +9,10 @@ $link = db_connect();
 if (isset($_GET['game'])) {
 
     $game_name = $_GET['game'];
-
+    $columns = getColNames($link, $game_name);
 } else {
     $game_name = "lineage_rus";
+    $columns = getColNames($link, $game_name);
 
 }
 if (isset($_GET['action'])) {
@@ -61,7 +62,7 @@ if ($action == 'add') {
     //include("../views/server_admin.php");
 
 } else {
-
+    $columns = getColNames($link, $game_name);
     $servers = servers_all($link, $game_name);
     include("../views/admin_panel.php");
 }
