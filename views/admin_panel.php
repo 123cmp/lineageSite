@@ -6,10 +6,9 @@ header("Content-Type: text/html; charset=utf-8");
 <head>
     <meta charset="UTF-8">
     <title>Admin panel</title>
-    <link rel="stylesheet" type="text/css" href="../style/style_admin.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style/style_admin.css">
 </head>
 <body>
 <header class="navbar navbar-fixed-top navbar-inverse">
@@ -74,7 +73,8 @@ header("Content-Type: text/html; charset=utf-8");
 e
 <div class="container" id="all">
     <h1 id="tableName"><?= $GLOBALS['game_name'] ?></h1>
-    <table class="table table-bordered table-hover table-responsive">
+    <table id="dataTable" class="table  table-bordered table-hover table-responsive" >
+        <thead>
         <tr>
             <?php foreach ($servers as $s):
                 foreach ($s as $key => $v): ?>
@@ -87,6 +87,8 @@ e
             <th id="buttonTh"><a href="#serverModal" role="button" class="btn btn-default" data-toggle="modal">Add
                     server</a></th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <?php foreach ($servers as $s):
             foreach ($s as $key => $v): ?>
@@ -96,10 +98,16 @@ e
                                  href="../admin/index.php?action=delete&id=<?= $s['id'] ?>&game=<?= $GLOBALS['game_name'] ?>">Delete</a>
             </td>
         </tr>
-
+        </tbody>
         <?php endforeach ?>
+        
     </table>
 </div>
 </table>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../scripts/Admin.js"></script>
 </body>
 </html>
