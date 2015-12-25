@@ -44,8 +44,8 @@ header("Content-Type: text/html; charset=utf-8");
                 <h3 class="modal-title" id="myModalLabel">Добавить сервер</h3>
             </div>
             <div class="modal-body">
-                <form method="post"
-                      action="index.php?action=add&id=<?= $_GET['id'] ?>&game=<?= $GLOBALS['game_name'] ?>">
+                <form 
+                      >
                     <div class="form-inline form-group">
                         <label for="inputName">Server_name</label>
                         <input type="text" id="inputName" class="form-control form-item" name="server_name"
