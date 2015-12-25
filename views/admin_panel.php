@@ -37,6 +37,7 @@ header("Content-Type: text/html; charset=utf-8");
 </header>
 
 <div id="serverModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<form id = "form">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -55,13 +56,14 @@ header("Content-Type: text/html; charset=utf-8");
                         <input type="text" id="sum" class="form-control form-item" name="sum" required>
                         <label class="modallbl" for="cost">Coefficient</label>
                         <input type="text" id="cost" class="form-control form-item" name="cost" required>
-                    </div>       
+                    </div>
             </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn" value="Save">
+                    <button class="btn" id="Save">Save</button>
                 </div>
         </div>
     </div>
+    <form>
 </div>
 
 <div class="container" id="all">

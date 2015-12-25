@@ -9,10 +9,17 @@ $(document).ready(function(){
     });
     var i = 1;
     $('#addCoef').click(function(){
-    	$('#modalBody').append("<div class=\"form-inline form-group\"><label class=\"modallbl\" for=\"sum1\">Gold</label>"+
-    		"<input type=\"text\" id=\"sum1\" class=\"form-control form-item\" required>"+
-    		"<label class=\"modallbl\" for=\"cost1\">Coefficient</label><input type=\"text\" id=\"cost1\""+
-    		"class=\"form-control form-item\"required></div>");
-
+    	
+    	$('#modalBody').append("<div class=\"form-inline form-group\">\n<label class=\"modallbl\" for=\"sum"+i+"\">Gold</label>"+
+    		"\n<input type=\"text\" id=\"sum"+i+"\" class=\"form-control form-item\" required>"+
+    		"\n<label class=\"modallbl\" for=\"cost"+i+"\">Coefficient</label>\n<input type=\"text\" id=\"cost"+i+"\""+
+    		"class=\"form-control form-item\"required>\n</div>");
+    	i++;
     });
+
+    $('#Save').click(function(){
+    	var v = ('#form').serializeArray();
+ 
+ 		console.log(v);
+	 });
 });
