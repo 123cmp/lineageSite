@@ -7,5 +7,12 @@ $(document).ready(function(){
         },
         
     });
+    var i = 1;
+    $('#addCoef').click(function(){
+    	$('#modalBody').append("<div class=\"form-inline form-group\"><label class=\"modallbl\" for=\"sum1\">Gold</label>"+
+    		"<input type=\"text\" id=\"sum1\" class=\"form-control form-item\" required>"+
+    		"<label class=\"modallbl\" for=\"cost1\">Coefficient</label><input type=\"text\" id=\"cost1\""+
+    		"class=\"form-control form-item\"required></div>");
 
+    });
 });

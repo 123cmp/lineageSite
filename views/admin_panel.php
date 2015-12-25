@@ -43,28 +43,23 @@ header("Content-Type: text/html; charset=utf-8");
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Добавить сервер</h3>
             </div>
-            <div class="modal-body">
-                <form 
-                      >
+            <div class="modal-body" id="modalBody">
                     <div class="form-inline form-group">
                         <label for="inputName">Server_name</label>
                         <input type="text" id="inputName" class="form-control form-item" name="server_name"
                                 required>
                         <button class="btn" id="addCoef">Add one more</button>
                     </div>
-
                     <div class="form-inline form-group">
-                        <label class="modallbl" for="sum1">Gold</label>
-                        <input type="text" id="sum1" class="form-control form-item" name="sum1" required>
-                        <label class="modallbl" for="cost1">Coefficient</label>
-                        <input type="text" id="cost1" class="form-control form-item" name="cost1" required>
-                    </div>
-
-
-                    <input type="submit" class="btn" value="Save">
-
-                </form>
+                        <label class="modallbl" for="sum">Gold</label>
+                        <input type="text" id="sum" class="form-control form-item" name="sum" required>
+                        <label class="modallbl" for="cost">Coefficient</label>
+                        <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                    </div>       
             </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn" value="Save">
+                </div>
         </div>
     </div>
 </div>
@@ -97,10 +92,7 @@ header("Content-Type: text/html; charset=utf-8");
             </td>";
             echo '</tr>';
         } ?>
-
         </tbody>
-
-
     </table>
 </div>
 
