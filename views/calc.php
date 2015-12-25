@@ -45,91 +45,176 @@ foreach($servers as $i => $server) {
 <div class="calc">
     <h2>Калькулятор</h2>
     <div class="first">
-        <label>
-            <select class="server">
-                <?php foreach($data as $i => $server) {
-                    echo "<option value='{$server->name}' data-id='{$i}'>{$server->name}</option>";
-                }
-                ?>
-            </select>
-        </label>
-        <br/>
-        <label>
-            <input class="money" type="text" placeholder="Я заплачу">
-        </label>
-        <br/>
-        <label>
-            <input class="adena" type="text" placeholder="Я получу">
-        </label>
-        <br/>
-        <button>Пойдет</button>
+        <form>
+            <label>
+                <select class="server" name="server">
+                    <?php foreach($data as $i => $server) {
+                        echo "<option value='{$server->name}' data-id='{$i}'>{$server->name}</option>";
+                    }
+                    ?>
+                </select>
+            </label>
+            <br/>
+            <label>
+                <input class="money" pattern="\d+" name="money" type="text" placeholder="Я заплачу">
+            </label>
+            <br/>
+            <label>
+                <input class="adena" pattern="\d+" name="adena" type="text" placeholder="Я получу">
+            </label>
+            <br/>
+            <button>Пойдет</button>
+        </form>
     </div>
     <div class="second" style="display: none">
-        <label>
-            <input class="nickname" type="text" placeholder="Ник">
-        </label>
-        <br/>
-        <label>
-            <input class="contact" type="text" placeholder="Контакт">
-        </label>
-        <br/>
-        <label>
-            <textarea class="comment" placeholder="Комментарий"></textarea>
-        </label>
-        <br/>
-        <button>Пойдет</button>
+        <form>
+            <label>
+                <input class="nickname" name="nickname" type="text" placeholder="Ник">
+            </label>
+            <br/>
+            <label>
+                <input class="contact" name="contact" type="text" placeholder="Контакт">
+            </label>
+            <br/>
+            <label>
+                <textarea class="comment" name="comment" placeholder="Комментарий"></textarea>
+            </label>
+            <br/>
+            <button>Пойдет</button>
+        </form>
     </div>
 
 
 </div>
 
 <script>
-    var first = $('.calc .first');
-    var second = $('.calc .second');
-    first.find('button').click(function() {
-        first.hide();
-        second.show();
-    });
-    second.find('button').click(function() {
-        $.ajax({
-            url: '/',
-            type: 'post',
-            data: {
-                action: 'saverequest',
-                game: '<?php echo $game ?>',
-                server: $('.server').val(),
-                money: $('.money').val(),
-                adena: $('.adena').val(),
-                nickname: $('.nickname').val(),
-                contact: $('.contact').val(),
-                comment: $('.comment').val()
-            },
-            complete: function() {
-//                window.location.reload();
+    $(document).ready(function() {
+        var first = $('.calc .first');
+        var second = $('.calc .second');
+        var money = $('.money');
+        var adena = $('.adena');
+
+        money.digitsOnly();
+        adena.digitsOnly();
+
+        first.find('button').click(function() {
+            var valid = first.find('form').valid();
+            if(valid) {
+                first.hide();
+                second.show();
             }
-        })
-    });
-    var adenaCalc = new AdenaCalc(
-        $('.money'),
-        $('.adena')
-    );
+            return false;
+        });
+        second.find('button').click(function() {
+            var valid = second.find('form').valid();
+            if(valid) {
+                $.ajax({
+                    url: '/',
+                    type: 'post',
+                    data: {
+                        action: 'saverequest',
+                        game: '<?php echo $game ?>',
+                        server: $('.server').val(),
+                        money: $('.money').val(),
+                        adena: $('.adena').val(),
+                        nickname: $('.nickname').val(),
+                        contact: $('.contact').val(),
+                        comment: $('.comment').val()
+                    },
+                    complete: function() {
+//                window.location.reload();
+                    }
+                })
+            }
+            return false;
+        });
+        var adenaCalc = new AdenaCalc(
+            money,
+            adena
+        );
 
-    var coefficients = <?php echo json_encode($data) ?>;
-    adenaCalc.setCoefficients(coefficients[0].coefficients);
+        var coefficients = <?php echo json_encode($data) ?>;
+        adenaCalc.setCoefficients(coefficients[0].coefficients);
 
-    $('.server').change(function() {
-        console.log(coefficients);
-        var id = 0;
-        var select = $(this);
-
-        $('.server option').each(function(i, option) {
-            if($(option).val() == select.val())
-                id = i;
+        first.find('form').validate({
+            rules: {
+                server: {
+                    required: true
+                },
+                money: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 16,
+                    number: true
+                },
+                adena: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 26,
+                    number: true
+                }
+            },
+            messages: {
+                server: {
+                    required: 'Пожалуйста выберите сервер'
+                },
+                money: {
+                    required: 'Пожалуйста введите сумму денег',
+                    minlength: 'Введенная сумма денег меньше минимальной',
+                    maxlength: 'Введенная сумма денег больше максимальной',
+                    number: 'Не корректная сумма денег'
+                },
+                adena: {
+                    required: 'Пожалуйста введите количество адены',
+                    minlength: 'Введенное количество адены меньше минимальной',
+                    maxlength: 'Введенное количество адены меньше больше максимальной',
+                    number: 'Не корректное количество адены'
+                }
+            }
         });
 
-        adenaCalc.setCoefficients(coefficients[id].coefficients);
-    }).select2({
-        minimumResultsForSearch: -1
+        second.find('form').validate({
+            rules: {
+                nickname: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 40
+                },
+                contact: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 40
+                }
+            },
+            messages: {
+                nickname: {
+                    required: 'Пожалуйста введите ваш ник в игре',
+                    minlength: 'Ник слишком короткий',
+                    maxlength: 'Ник слишком длинный'
+                },
+                contact: {
+                    required: 'Пожалуйста введите ваши контактные данные',
+                    minlength: 'Контактные данные слишком короткие',
+                    maxlength: 'Контактные данные слишком длинные'
+                }
+            }
+        });
+
+        $('.server').change(function() {
+            console.log(coefficients);
+            var id = 0;
+            var select = $(this);
+
+            $('.server option').each(function(i, option) {
+                if($(option).val() == select.val())
+                    id = i;
+            });
+
+            adenaCalc.setCoefficients(coefficients[id].coefficients);
+        }).select2({
+            minimumResultsForSearch: -1
+        });
     });
+
 
 </script>

@@ -24,6 +24,28 @@ function getGameServers($link, $game_name) {
     return sqlResultToArray($result);
 }
 
+function findCoefficient($coefficients, $value) {
+    $coefficientId = null;
+
+    $coefficientsCount = sizeof($coefficients);
+    $lastCoefficientId = $coefficientsCount - 1;
+    $lastCoefficient = $coefficients[$lastCoefficientId];
+    $firstCoefficient = $coefficients[0];
+
+    if($value < $firstCoefficient->count)
+        $coefficientId = 0;
+    else if($value > $lastCoefficient->count)
+        $coefficientId = $lastCoefficientId;
+    else
+        forEach($coefficients as $i => $coefficient) {
+            if($value >= $coefficient->count) {
+                $coefficientId = $i;
+            }
+        }
+
+    return $coefficientId;
+}
+
 function saveRequest($link, $request) {
     $query = "INSERT INTO requests (game, server, money, adena, nickname, contact, comment)
       VALUES ('{$request->game}', '{$request->server}', {$request->money}, {$request->adena},

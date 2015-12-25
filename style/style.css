@@ -123,7 +123,7 @@ header .main-menu li a:hover {
     float: left;
     width: 44%;
     display: block;
-    height: 400px;
+    /*height: 400px;*/
     text-align: center;
     background-color: #111111;
     box-sizing: border-box;
@@ -264,4 +264,15 @@ footer .duplicate-menu li {
 .select2-results__option {
     height: 40px !important;
     line-height: 40px !important;
+}
+
+label.error {
+    color: #ff4b35;
+    font-weight: 300;
+    float: left;
+    margin-left: 5%;
+}
+
+input.error {
+    color: #ff4b35;
 }

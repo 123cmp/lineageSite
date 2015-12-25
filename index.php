@@ -39,10 +39,9 @@
     <title>Some site</title>
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,900,700,100&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
-    <script src="scripts/AdenaCalc.js"></script>
 </head>
 <body>
     <div class="content">
@@ -96,7 +95,7 @@
 
             <div class="main-content gradient-transparent">
                 <!-- /*CALC HERE*/ -->
-                <?php require_once 'views/calc.php'; ?>
+                <?php include 'views/calc.php'; ?>
             </div>
 
             <div class="left-content gradient-transparent">
@@ -122,5 +121,9 @@
         </footer>
     </div>
 
+    <script src="scripts/digitsOnly.js"></script>
+    <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="scripts/AdenaCalc.js"></script>
 </body>
 </html>

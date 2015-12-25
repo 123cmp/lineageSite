@@ -55,11 +55,9 @@ header("Content-Type: text/html; charset=utf-8");
 
                     <div class="form-inline form-group">
                         <label class="modallbl" for="sum1">Gold</label>
-                        <input type="text" id="sum1" class="form-control" name="sum1"
-                               class="form-item" required>
+                        <input type="text" id="sum1" class="form-control form-item" name="sum1" required>
                         <label class="modallbl" for="cost1">Coefficient</label>
-                        <input type="text" id="cost1" class="form-control" name="cost1"
-                               class="form-item" required>
+                        <input type="text" id="cost1" class="form-control form-item" name="cost1" required>
                     </div>
 
 
@@ -70,7 +68,7 @@ header("Content-Type: text/html; charset=utf-8");
         </div>
     </div>
 </div>
-e
+
 <div class="container" id="all">
     <h1 id="tableName"><?= $GLOBALS['game_name'] ?></h1>
     <table id="dataTable" class="table  table-bordered table-hover table-responsive" >
@@ -89,21 +87,22 @@ e
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <?php foreach ($servers as $s):
-            foreach ($s as $key => $v): ?>
-                <td><?= $s[$key] ?></td>
-            <?php endforeach ?>
-            <td id="buttonTh"><a class="btn btn-danger"
-                                 href="../admin/index.php?action=delete&id=<?= $s['id'] ?>&game=<?= $GLOBALS['game_name'] ?>">Delete</a>
-            </td>
-        </tr>
+        <?php foreach ($servers as $s){
+            echo '<tr>';
+            foreach ($s as $key => $v) {
+                echo "<td>{$s[$key]}</td>";
+            }
+            echo "<td id=\"buttonTh\"><a class=\"btn btn-danger\"
+                                 href=\"../admin/index.php?action=delete&id={$s['id']}&game={$GLOBALS['game_name']}\">Delete</a>
+            </td>";
+            echo '</tr>';
+        } ?>
+
         </tbody>
-        <?php endforeach ?>
-        
+
+
     </table>
 </div>
-</table>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
