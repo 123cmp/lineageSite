@@ -46,16 +46,23 @@ function findCoefficient($coefficients, $value) {
     return $coefficientId;
 }
 
+function adenaToMoney($adena, $coefficient) {
+    return $adena / $coefficient->value;
+}
+
 function saveRequest($link, $request) {
-    $query = "INSERT INTO requests (game, server, money, adena, nickname, contact, comment)
+    $query = "INSERT INTO orders (game, server, money, adena, nickname, contact, comment)
       VALUES ('{$request->game}', '{$request->server}', {$request->money}, {$request->adena},
       '{$request->nickname}', '{$request->contact}', '{$request->comment}')";
 
-    echo $query;
     $result = mysqli_query($link, $query);
 
-    if (!$result)
-        die(mysqli_error($link));
+    if (!$result) {
+        return(mysqli_error($link));
+    } else {
+        return true;
+    }
+
 }
 
 function sqlResultToArray($sqlResult) {

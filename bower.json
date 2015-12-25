@@ -15,6 +15,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "select2": "~4.0.1",
-    "jquery-validation": "jquery-validate#~1.14.0"
+    "jquery-validation": "jquery-validate#~1.14.0",
+    "notific8": "~2.3.1"
   }
 }

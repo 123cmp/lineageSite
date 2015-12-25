@@ -24,8 +24,16 @@
                 $request = new Request($game, $server, $money, $adena,
                     $nickname, $contact, $comment, $link);
 
-                saveRequest($link, $request);
-                echo json_encode($link);
+                if($request->isValid()) {
+                    echo "OK";
+                    saveRequest($link, $request);
+                    die();
+                } else {
+                    echo "ERROR";
+                    die();
+                }
+
+
             }
         }
     }
@@ -40,6 +48,7 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,900,700,100&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
     <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="bower_components/notific8/dist/jquery.notific8.min.css" rel="stylesheet" />
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </head>
@@ -124,6 +133,7 @@
     <script src="scripts/digitsOnly.js"></script>
     <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="bower_components/notific8/dist/jquery.notific8.min.js"></script>
     <script src="scripts/AdenaCalc.js"></script>
 </body>
 </html>

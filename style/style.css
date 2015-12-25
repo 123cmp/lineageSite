@@ -276,3 +276,7 @@ label.error {
 input.error {
     color: #ff4b35;
 }
+
+.notific8-notification {
+    height: 50px !important;
+}

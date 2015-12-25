@@ -17,12 +17,13 @@ $data = [];
 //    array_push($data, $server);
 //}
 
-$game = $_GET['game'];
 $connection = Connection::getInstance();
 $link = $connection->getLink();
 
-if(!isset($game))
+if(!isset($_GET['game']))
     $game = 'lineage_classic_euro';
+else
+    $game = $_GET['game'];
 
 $coefficients = getGameCoefficients($link, $game);
 $servers = getGameServers($link, $game);
@@ -36,7 +37,8 @@ foreach($servers as $i => $server) {
     }
 
     $name = $server["server_name"];
-    $server = new Server($name, $serverCoefficients);
+    $id = $server["id"];
+    $server = new Server($name, $serverCoefficients, $id);
     array_push($data, $server);
 }
 
@@ -49,7 +51,7 @@ foreach($servers as $i => $server) {
             <label>
                 <select class="server" name="server">
                     <?php foreach($data as $i => $server) {
-                        echo "<option value='{$server->name}' data-id='{$i}'>{$server->name}</option>";
+                        echo "<option value='{$server->name}' data-id='{$i}' data-server-id='{$server->id}'>{$server->name}</option>";
                     }
                     ?>
                 </select>
@@ -121,8 +123,12 @@ foreach($servers as $i => $server) {
                         contact: $('.contact').val(),
                         comment: $('.comment').val()
                     },
-                    complete: function() {
-//                window.location.reload();
+                    complete: function(res) {
+                        if(res.responseText == 'OK') {
+                            $.notific8('Заявка отправлена', {theme: 'shamrock', family: 'chicchat'});
+                        } else {
+                            $.notific8('Произошла ошибка', {theme: 'ruby', family: 'chicchat'});
+                        }
                     }
                 })
             }
