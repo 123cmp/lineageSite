@@ -27,19 +27,20 @@ function servers_all($link, $game_name)
         $coef[] = $row;
     }
     $v = 0;
+    if(!isset($servers))
+        return false;
     for ($j = 0; $j < count($servers); $j++) {
         for ($i = 0; $i <= count($coef[$v]); $i++) {
 
             $servers[$j]["sum_$i"] = $coef[$v]['sum'];
             $servers[$j]["cost_$i"] = $coef[$v]['cost'];
-        $v++;
-            if(!isset($coef[$v])){
+            $v++;
+            if (!isset($coef[$v])) {
                 break;
             }
         }
     }
     return $servers;
-    //return array_merge($servers, $coef);
 }
 
 function server_get($id, $link, $game_name)

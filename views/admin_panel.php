@@ -29,7 +29,6 @@ header("Content-Type: text/html; charset=utf-8");
                         </ul>
                     </li>
                     <li><a href="../index.php">Home</a></li>
-
                 </ul>
             </nav>
         </div>
@@ -37,7 +36,6 @@ header("Content-Type: text/html; charset=utf-8");
 </header>
 
 <div id="serverModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<form id = "form">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -45,30 +43,30 @@ header("Content-Type: text/html; charset=utf-8");
                 <h3 class="modal-title" id="myModalLabel">Добавить сервер</h3>
             </div>
             <div class="modal-body" id="modalBody">
-                    <div class="form-inline form-group">
-                        <label for="inputName">Server_name</label>
-                        <input type="text" id="inputName" class="form-control form-item" name="server_name"
-                                required>
-                        <button class="btn" id="addCoef">Add one more</button>
-                    </div>
-                    <div class="form-inline form-group">
-                        <label class="modallbl" for="sum">Gold</label>
-                        <input type="text" id="sum" class="form-control form-item" name="sum" required>
-                        <label class="modallbl" for="cost">Coefficient</label>
-                        <input type="text" id="cost" class="form-control form-item" name="cost" required>
-                    </div>
-            </div>
-                <div class="modal-footer">
-                    <button class="btn" id="Save">Save</button>
+                <div class="form-inline form-group">
+                    <label for="inputName">Server_name</label>
+                    <input type="text" id="inputName" class="form-control form-item" name="server_name"
+                           required>
+                    <button class="btn" id="addCoef">Add one more</button>
                 </div>
+                <div class="form-inline form-group coef">
+                    <label class="modallbl" for="sum">Adena</label>
+                    <input type="text" id="sum" class="form-control form-item" name="sum" required>
+                    <label class="modallbl" for="cost">Coefficient</label>
+                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="Save">Save</button>
+            </div>
         </div>
     </div>
-    <form>
+
 </div>
 
 <div class="container" id="all">
     <h1 id="tableName"><?= $GLOBALS['game_name'] ?></h1>
-    <table id="dataTable" class="table  table-bordered table-hover table-responsive" >
+    <table id="dataTable" class="table  table-bordered table-hover table-responsive">
         <thead>
         <tr>
             <?php foreach ($servers as $s):
@@ -84,7 +82,7 @@ header("Content-Type: text/html; charset=utf-8");
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($servers as $s){
+        <?php foreach ($servers as $s) {
             echo '<tr>';
             foreach ($s as $key => $v) {
                 echo "<td>{$s[$key]}</td>";
@@ -98,9 +96,9 @@ header("Content-Type: text/html; charset=utf-8");
     </table>
 </div>
 
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="../scripts/Admin.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../scripts/Admin.js"></script>
 </body>
 </html>
