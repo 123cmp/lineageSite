@@ -35,8 +35,8 @@ header("Content-Type: text/html; charset=utf-8");
     </div>
 </header>
 
-<div id="serverModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div id="serverModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document" >
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -47,17 +47,30 @@ header("Content-Type: text/html; charset=utf-8");
                     <label for="inputName">Server_name</label>
                     <input type="text" id="inputName" class="form-control form-item" name="server_name"
                            required>
-                    <button class="btn" id="addCoef">Add one more</button>
+                    <input type="hidden" id="gameName" value="<?= $GLOBALS['game_name']?>">
+                  <!--  <button class="btn" id="addCoef">Add one more</button> -->
                 </div>
-                <div class="form-inline form-group coef">
-                    <label class="modallbl" for="sum">Adena</label>
-                    <input type="text" id="sum" class="form-control form-item" name="sum" required>
+                <div class="form-group coef">
+                    <label class="modallbl" for="sum">1k</label>
+                    <input type="hidden" id="sum" class="form-control form-item" value="1000" required>
+                    <label class="modallbl" for="cost">Coefficient</label>
+                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                </div>
+                <div class="form-group coef">
+                    <label class="modallbl" for="sum">1kk</label>
+                    <input type="hidden" id="sum" class="form-control form-item" value="1000000" required>
+                    <label class="modallbl" for="cost">Coefficient</label>
+                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                </div>
+                <div class="form-group coef">
+                    <label class="modallbl" for="sum">1kkk</label>
+                    <input type="hidden" id="sum" class="form-control form-item" value="1000000000" required>
                     <label class="modallbl" for="cost">Coefficient</label>
                     <input type="text" id="cost" class="form-control form-item" name="cost" required>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn" id="Save">Save</button>
+                <button class="btn" id="Save" data-dismiss="modal" aria-hidden="true">Save</button>
             </div>
         </div>
     </div>
@@ -85,6 +98,8 @@ header("Content-Type: text/html; charset=utf-8");
         <?php foreach ($servers as $s) {
             echo '<tr>';
             foreach ($s as $key => $v) {
+                if($s[$key] == '0' )
+                    $s[$key] = "-";
                 echo "<td>{$s[$key]}</td>";
             }
             echo "<td id=\"buttonTh\"><a class=\"btn btn-danger\"

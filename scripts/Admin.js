@@ -17,16 +17,35 @@ $(document).ready(function(){
     });
 
     $('#Save').click(function(){
-
-        var result = [];
+        var data;
+        var result = {};
+        result.coef = [];
         $('#modalBody .coef').each(function(i, v) {
             var inputs = $(v).find('input');
-            result.push({sum: $(inputs.get(0)).val(),
+            if($('#gameName').val() == null){
+                result.coef.push({sum: $(inputs.get(0)).val(),
+                    cost: 0});
+            }
+            result.coef.push({sum: $(inputs.get(0)).val(),
                 cost: $(inputs.get(1)).val()});
         });
-        result.push({server_name: $('#inputName').val()})
+        result.server_name = $('#inputName').val();
+        result.game_name = $('#gameName').val();
 
-
-	   });
+        data = JSON.stringify(result);
+        console.log(data);
+        $.ajax({
+            url: '../admin/index.php?action=add',
+            method: 'POST',
+            data: {"data" : data},
+            dataType : 'JSON',
+            success: function(data){
+                console.log(data);
+            }
+        });
+        //$(location).attr('href',"../admin/index.php?game="+result.game_name);
+        //location.href = "../admin/index.php?game="+result.game_name;
+        //window.location.reload()
+    });
 
 });

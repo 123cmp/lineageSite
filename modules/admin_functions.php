@@ -27,13 +27,14 @@ function servers_all($link, $game_name)
         $coef[] = $row;
     }
     $v = 0;
+    $k = ["1k", "1kk", "1kkk"];
     if(!isset($servers))
         return false;
     for ($j = 0; $j < count($servers); $j++) {
         for ($i = 0; $i <= count($coef[$v]); $i++) {
 
-            $servers[$j]["sum_$i"] = $coef[$v]['sum'];
-            $servers[$j]["cost_$i"] = $coef[$v]['cost'];
+           //$servers[$j]["sum_$i"] = $coef[$v]['sum'];
+            $servers[$j][$k[$i]] = $coef[$v]['cost'];
             $v++;
             if (!isset($coef[$v])) {
                 break;
@@ -52,27 +53,25 @@ function server_get($id, $link, $game_name)
     return $article;
 }
 
-function server_add($link, $game_name, $server_name, $sum, $cost)
-{
-    $server_name = trim($server_name);
+function server_add($link, $data){
 
-    $t = "INSERT INTO " . $game_name . " (server_name) VALUES ('%s')";
+    $server_name = trim($data['server_name']);
+
+    $t = "INSERT INTO " . $data['game_name'] . " (server_name) VALUES ('%s')";
     $query = sprintf($t, mysqli_real_escape_string($link, $server_name));
     $result = mysqli_query($link, $query);
 
     $id = mysqli_insert_id($link);
 
-    $i = 0;
-    while ($i < count($sum)) {
+
+    foreach($data['coef'] as $coef){
         $id = (int)$id;
         $t = "INSERT INTO coefficients (server_id, sum, cost, game_name) VALUES ('%d', '%f', '%f', '%s')";
         $query = sprintf($t, mysqli_real_escape_string($link, $id),
-            mysqli_real_escape_string($link, $sum[$i]),
-            mysqli_real_escape_string($link, $cost[$i]),
-            mysqli_real_escape_string($link, $game_name));
+            mysqli_real_escape_string($link, $coef['sum']),
+            mysqli_real_escape_string($link, $coef['cost']),
+            mysqli_real_escape_string($link, $data['game_name']));
         $result = mysqli_query($link, $query);
-
-        $i++;
 
     }
 
