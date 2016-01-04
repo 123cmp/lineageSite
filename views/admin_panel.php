@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
             <nav>
                 <a href="#" id="logo">Admin Panel</a>
                 <ul class="nav pull-right nav-pills">
-                    <li><a href="#">Orders</a></li>
+                    <li><a href="../admin/index.php?orders=true">Orders</a></li>
                     <li id="fat-menu" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Games</a>
