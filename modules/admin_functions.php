@@ -44,13 +44,18 @@ function servers_all($link, $game_name)
     return $servers;
 }
 
-function server_get($id, $link, $game_name)
+function orders_get($link)
 {
-    $query = "SELECT * FROM " . "$game_name" . " WHERE id=$id";
+    $query = "SELECT * FROM orders";
     $result = mysqli_query($link, $query);
-    $row = mysqli_fetch_assoc($result);
-    $article = $row;
-    return $article;
+    if (!$result)
+        die(mysqli_error($link));
+    $orders = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+
+        $orders[] = $row;
+    }
+    return $orders;
 }
 
 function server_add($link, $data){
@@ -117,4 +122,19 @@ function server_delete($link, $id, $game_name)
     if (!$result)
         die(mysqli_error($link));
     return mysqli_affected_rows($link);
+}
+
+function set_status($link, $id, $status){
+
+    $sql = "UPDATE orders SET status='%s' WHERE o_id='%d'";
+    $query = sprintf($sql, mysqli_real_escape_string($link, $status),
+        $id);
+
+    $result = mysqli_query($link, $query);
+
+    if (!$result)
+
+        die(mysqli_error($link));
+
+    return true;
 }

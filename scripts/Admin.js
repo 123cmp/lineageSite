@@ -33,7 +33,7 @@ $(document).ready(function(){
         result.game_name = $('#gameName').val();
 
         data = JSON.stringify(result);
-        console.log(data);
+
         $.ajax({
             url: '../admin/index.php?action=add',
             method: 'POST',
@@ -47,5 +47,27 @@ $(document).ready(function(){
         //location.href = "../admin/index.php?game="+result.game_name;
         //window.location.reload()
     });
+
+    $(".status").change(function(){
+        data = [];
+        data.push($(this).children(":selected").val());
+        data.push($(this).children(":selected").attr("id"));
+
+        data = JSON.stringify(data);
+        console.log(data);
+
+    $.ajax({
+        url: 'response.php',
+        method: 'POST',
+        data: {"data" : data},
+
+        url: '../admin/index.php?orders=true',
+        
+
+        });
+    });
+
+
+
 
 });
