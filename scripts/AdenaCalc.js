@@ -80,11 +80,13 @@ function AdenaCalc(moneyField, adenaField) {
     }
 
     function moneyToAdena(money, coefficient) {
+        money = number_unformat(money);
         if(!coefficient) coefficient  = self.chosenCoefficient;
         return money * coefficient.value;
     }
 
     function adenaToMoney(adena, coefficient) {
+        adena = number_unformat(adena);
         if(!coefficient) coefficient  = self.chosenCoefficient;
         return adena / coefficient.value;
     }
@@ -96,9 +98,9 @@ function AdenaCalc(moneyField, adenaField) {
         );
 
         if(direction) { // money -> adena
-            adenaField.val(moneyToAdena(moneyField.val()));
+            adenaField.val(number_format(moneyToAdena(moneyField.val())));
         } else {        // adena -> money
-            moneyField.val(adenaToMoney(adenaField.val()));
+            moneyField.val(number_format(adenaToMoney(adenaField.val())));
         }
     }
 

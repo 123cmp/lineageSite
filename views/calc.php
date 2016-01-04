@@ -144,8 +144,26 @@ function str_replace_first($search, $replace, $subject) {
         var money = $('.money');
         var adena = $('.adena');
 
-        money.digitsOnly();
-        adena.digitsOnly();
+        jQuery.validator.addMethod("formated", function(value, element) {
+            return Number.isInteger(number_unformat(value));
+        });
+
+        jQuery.validator.addMethod("fmax", function(value, element, params) {
+            return number_unformat(value) < params;
+        });
+
+        jQuery.validator.addMethod("fmin", function(value, element, params) {
+            return number_unformat(value) > params;
+        });
+
+        money.digitsOnly()
+            .keyup(function(){
+                $(this).val( number_format ( $(this).val() ) );
+            });
+        adena.digitsOnly()
+            .keyup(function(){
+                $(this).val( number_format ( $(this).val() ) );
+            });
 
         first.find('button').click(function() {
             var valid = first.find('form').valid();
@@ -165,8 +183,8 @@ function str_replace_first($search, $replace, $subject) {
                         action: 'saverequest',
                         game: '<?php echo $game ?>',
                         server: $('.server').val(),
-                        money: $('.money').val(),
-                        adena: $('.adena').val(),
+                        money: number_unformat($('.money').val()),
+                        adena: number_unformat($('.adena').val()),
                         nickname: $('.nickname').val(),
                         contact: $('.contact').val(),
                         comment: $('.comment').val()
@@ -197,15 +215,13 @@ function str_replace_first($search, $replace, $subject) {
                 },
                 money: {
                     required: true,
-                    min: 100,
-                    max: 100000,
-                    number: true
+                    formated: true
                 },
                 adena: {
                     required: true,
-                    min: 1000,
-                    max: 1000000000,
-                    number: true
+                    fmin: 10,
+                    fmax: 190000000000,
+                    formated: true
                 }
             },
             messages: {
@@ -214,15 +230,13 @@ function str_replace_first($search, $replace, $subject) {
                 },
                 money: {
                     required: 'Пожалуйста введите сумму денег',
-                    min: 'Введенная сумма денег меньше минимальной',
-                    max: 'Введенная сумма денег больше максимальной',
-                    number: 'Не корректная сумма денег'
+                    formated: 'Не корректная сумма денег'
                 },
                 adena: {
                     required: 'Пожалуйста введите количество адены',
-                    min: 'Введенное количество адены меньше минимальной',
-                    max: 'Введенное количество адены меньше больше максимальной',
-                    number: 'Не корректное количество адены'
+                    fmin: 'Введенное количество адены меньше минимальной',
+                    fmax: 'Введенное количество адены меньше больше максимальной',
+                    formated: 'Не корректное количество адены'
                 }
             }
         });
@@ -231,13 +245,13 @@ function str_replace_first($search, $replace, $subject) {
             rules: {
                 nickname: {
                     required: true,
-                    minlength: 3,
-                    maxlength: 40
+                    minlength: 2,
+                    maxlength: 16
                 },
                 contact: {
                     required: true,
-                    minlength: 3,
-                    maxlength: 40
+                    minlength: 2,
+                    maxlength: 140
                 }
             },
             messages: {

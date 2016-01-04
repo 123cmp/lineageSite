@@ -1,3 +1,7 @@
+@font-face {
+    font-family: runes;
+    src: url('Acadian_Runes-Regular_PERSONAL_USE.ttf');
+}
 
 * {
     margin: 0;
@@ -11,7 +15,17 @@ a {
 }
 
 body {
-    background: #e7e1e1;
+    background: url('bg.png') no-repeat rgb(243, 243, 243) -24% 0;
+    background-size: 50%;
+}
+
+.bg2 {
+    width: 100%;
+    height: 100%;
+    background: url('bg2.png') no-repeat rgba(231,225,255,0.1) 89% 0;
+    background-size: 43%;
+    position: absolute;
+    z-index: -6;
 }
 
 .content {
@@ -40,13 +54,20 @@ header .logo {
 }
 
 header .site-name {
-    float: right;
-    color: grey;
+    font-family: 'runes', sans-serif;
+    color: rgb(255, 116, 58);
     font-weight: 700;
     height: 150px;
     line-height: 150px;
-    margin-right: 100px;
+    text-align: center;
+    font-size: 78px;
+    text-shadow: -4px 3px 0 #3A0800 , -14px 7px 0 rgba(0, 0, 0, 0.26);
+}
 
+header .site-name span {
+    font-family: 'runes', sans-serif;
+    color: rgb(243, 243, 243);
+    text-shadow: 0 0 2px rgba(74, 10, 0, 0.85), -4px 3px 0 #3A0800 , -14px 7px 0 rgba(0, 0, 0, 0.26);
 }
 
 header .main-menu {
@@ -55,12 +76,12 @@ header .main-menu {
     clear: both;
     display: block;
     /*padding-top: 50px;*/
-    background: #111111;
+
     height: 50px;
     line-height: 50px;
     position: relative;
     /*background: rgba(255,255,255,0.7);*/
-    box-shadow: 0 0 10px rgb(87, 87, 87);
+
 }
 
 header .main-menu li {
@@ -72,16 +93,19 @@ header .main-menu li {
 }
 
 header .main-menu li a{
-    color: #FFF554;
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: 700;
     font-size: 18px;
     position: relative;
-    text-shadow: 0 0 6px #111111
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
 }
 
+
+
 header .main-menu li a:hover {
-    text-shadow: 0 0 6px #FFF554;
+    color: black;
+    text-shadow: 0 0 4px #FFFFFF, 0 0 6px #FFFFFF;
 }
 
 
@@ -94,10 +118,10 @@ header .main-menu li a:hover {
     float: left;
     width: 25%;
     margin: 0 25px 0 0;
-    color: #FFF554;
-    /*text-shadow: 0 0 6px #FFF554;*/
+    color: #FFFFFF;
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
     height: 400px;
-    background-color: #111111;
+    background-color: rgba(17, 17, 17, 0.1);;
     box-shadow: 0 0 10px rgb(87, 87, 87);
     text-align: center;
     padding: 20px;
@@ -114,36 +138,56 @@ header .main-menu li a:hover {
 
 .middle .side-menu a {
     color: white;
-    font-weight: 100;
-    border-bottom: 1px dotted;
+    font-weight: 300;
+    border-bottom: 1px dotted rgb(115, 115, 115);
+}
+
+.middle .side-menu a:hover {
+    border-bottom: 2px dotted rgb(115, 115, 115);
 }
 
 .middle .main-content {
-    box-shadow: 0 0 10px rgb(87, 87, 87);
     float: left;
     width: 44%;
     display: block;
     /*height: 400px;*/
     text-align: center;
-    background-color: #111111;
+    background-color: rgba(17, 17, 17, 0.1);;
+    box-shadow: 0 0 10px rgb(87, 87, 87);
     box-sizing: border-box;
     padding: 20px;
 }
 
 .middle .left-content {
     text-align: center;
-    color: #FFF554;
-    float: right;
-    width: 25%;
-    height: 150px;
+    color: #FFFFFF;
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
+    float: left;
+    width: 23%;
+    height: 100px;
+    background-color: rgba(17, 17, 17, 0.1);
     box-shadow: 0 0 10px rgb(87, 87, 87);
-    background-color: #111111;
     box-sizing: border-box;
     padding: 20px;
+    margin-left: 25px;
+    margin-top: 186px;
 }
 
 .middle .left-content ul {
     list-style: none;
+}
+
+.middle .left-content li {
+    border-bottom: 1px dotted rgb(115, 115, 115);
+    display: inline-block;
+    margin-top: 6px;
+    text-shadow: none;
+    color: black;
+    cursor: pointer;
+}
+
+.middle .left-content li:hover {
+    border-bottom: 2px dotted rgb(115, 115, 115);
 }
 
 footer {
@@ -159,8 +203,22 @@ footer .duplicate-menu {
 }
 
 footer .duplicate-menu li {
-    width: 100px;
+    margin: 0 31px;
     display: inline-block;
+}
+
+
+footer .duplicate-menu a {
+    color: #1B1B1B;
+    border-bottom: 1px dotted rgb(115, 115, 115);
+}
+
+footer .duplicate-menu a:hover {
+    border-bottom: 2px dotted rgb(115, 115, 115);
+}
+
+footer p {
+    margin: 60px 0 20px;
 }
 
 .form{
@@ -194,19 +252,18 @@ footer .duplicate-menu li {
 .calc input {
     width: 90%;
     height: 40px;
-    border: none;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
     margin-top: 20px;
     padding: 8px;
     box-sizing: border-box;
+    border: 1px solid rgb(181, 180, 180);
 }
 
 .calc textarea {
     width: 90%;
     height: 130px;
-    border: none;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -214,6 +271,7 @@ footer .duplicate-menu li {
     padding: 8px;
     box-sizing: border-box;
     resize: none;
+    border: 1px solid rgb(181, 180, 180);
 }
 
 .calc .second label:first-of-type input {
@@ -223,7 +281,6 @@ footer .duplicate-menu li {
 .calc button {
     width: 90%;
     height: 40px;
-    border: none;
     cursor: pointer;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -231,17 +288,22 @@ footer .duplicate-menu li {
     margin-top: 20px;
     padding: 8px;
     box-sizing: border-box;
-    background: #FFF554;
+    border: 1px solid rgb(181, 180, 180);
+    background: #FFFFFF;
 
 }
 
 .calc button:hover {
-    box-shadow: 0 0 10px #FFF554;
+    box-shadow: 0 0 10px rgba(87, 87, 87, 0.3);
+    background: transparent;
+    /*color: #FFFFFF;*/
+    /*text-shadow: 0 0 4px #000000, 0 0 6px #000000;*/
 }
 
 .calc h2 {
-    color: #FFF554;
     margin-bottom: 20px;
+    color: #FFFFFF;
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
 }
 
 .calc .select2-container {
@@ -282,16 +344,12 @@ input.error {
 }
 
 .payments {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
-.payments table{
-    margin-top: 15px;
-    color: #FFF554;
-}
-
+.payments table tr {     height: 30px; }
 .payments table{
     width: 100%;
     margin-top: 15px;
-    color: #FFF554;
+    color: #000000;
 }

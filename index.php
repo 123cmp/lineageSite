@@ -44,7 +44,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Some site</title>
+    <title>Luxory-trade.ru</title>
+    <link rel="shortcut icon" href="Favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,900,700,100&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
     <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
@@ -53,10 +55,13 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
+<div class="bg2">
+
+</div>
     <div class="content">
         <header>
-            <div class="logo">Logo</div>
-            <h1 class="site-name">Site name</h1>
+<!--            <div class="logo">Logo</div>-->
+            <h1 class="site-name">Luxory-<span>trade</span>.ru</h1>
             <nav>
                 <ul class="main-menu">
                     <li><a href="#">Главная</a></li>
@@ -131,6 +136,7 @@
     </div>
 
     <script src="scripts/digitsOnly.js"></script>
+    <script src="scripts/formatNumbers.js"></script>
     <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="bower_components/notific8/dist/jquery.notific8.min.js"></script>
