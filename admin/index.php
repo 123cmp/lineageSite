@@ -6,6 +6,7 @@ require_once("../modules/admin_functions.php");
 $link = db_connect();
 
 
+
 if (isset($_GET['game'])) {
 
     $game_name = $_GET['game'];
@@ -29,7 +30,6 @@ if (isset($_GET['action'])) {
 if ($action == 'add') {
 
     if (isset($_POST['data'])) {
-        echo "200";
         $data = json_decode($_POST['data'], true);
 
         server_add($link, $data);
@@ -59,6 +59,20 @@ if ($action == 'add') {
     $server = server_get($id, $link, $game_name);
 
     //include("../views/server_admin.php");
+
+} 
+if(isset($_GET['orders'])){
+
+    if(isset($_POST['data'])){
+
+       $data = json_decode($_POST['data'], true);
+
+       set_status($link, $data[1], $data[0]);
+    }
+
+    $orders = orders_get($link);
+
+    include("../views/admin_panel_orders.php");
 
 } else {
 
