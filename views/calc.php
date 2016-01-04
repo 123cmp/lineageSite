@@ -42,6 +42,27 @@ foreach($servers as $i => $server) {
     array_push($data, $server);
 }
 
+function toKK($value) {
+    if(is_numeric($value)) {
+        $value = (string) $value;
+        $pos = strpos($value, '000');
+        while ($pos !== false) {
+            $value = substr_replace($value, 'k', $pos, strlen('000'));
+            $pos = strpos($value, '000');
+        }
+    }
+
+    return $value;
+}
+
+function str_replace_first($search, $replace, $subject) {
+    $pos = strpos($subject, $search);
+    if ($pos !== false) {
+        $subject = substr_replace($subject, $replace, $pos, strlen($search));
+    }
+    return $subject;
+}
+
 ?>
 
 <div class="calc">
@@ -86,6 +107,33 @@ foreach($servers as $i => $server) {
         </form>
     </div>
 
+    <div class="payments">
+        <h2>Наши цены</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Сервер</th>
+                <th>1к</th>
+                <th>1кк</th>
+                <th>1ккк</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+                foreach($data as $i => $server) {
+                    echo "<tr>
+                        <td>{$server->name}</td>
+                        <td>{$server->getMoney(1000)}</td>
+                        <td>{$server->getMoney(1000000)}</td>
+                        <td>{$server->getMoney(1000000000)}</td>
+
+                    </tr>";
+                }
+            ?>
+
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
@@ -149,14 +197,14 @@ foreach($servers as $i => $server) {
                 },
                 money: {
                     required: true,
-                    minlength: 3,
-                    maxlength: 16,
+                    min: 100,
+                    max: 100000,
                     number: true
                 },
                 adena: {
                     required: true,
-                    minlength: 5,
-                    maxlength: 26,
+                    min: 1000,
+                    max: 1000000000,
                     number: true
                 }
             },
@@ -166,14 +214,14 @@ foreach($servers as $i => $server) {
                 },
                 money: {
                     required: 'Пожалуйста введите сумму денег',
-                    minlength: 'Введенная сумма денег меньше минимальной',
-                    maxlength: 'Введенная сумма денег больше максимальной',
+                    min: 'Введенная сумма денег меньше минимальной',
+                    max: 'Введенная сумма денег больше максимальной',
                     number: 'Не корректная сумма денег'
                 },
                 adena: {
                     required: 'Пожалуйста введите количество адены',
-                    minlength: 'Введенное количество адены меньше минимальной',
-                    maxlength: 'Введенное количество адены меньше больше максимальной',
+                    min: 'Введенное количество адены меньше минимальной',
+                    max: 'Введенное количество адены меньше больше максимальной',
                     number: 'Не корректное количество адены'
                 }
             }

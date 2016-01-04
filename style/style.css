@@ -280,3 +280,18 @@ input.error {
 .notific8-notification {
     height: 50px !important;
 }
+
+.payments {
+    margin-top: 15px;
+}
+
+.payments table{
+    margin-top: 15px;
+    color: #FFF554;
+}
+
+.payments table{
+    width: 100%;
+    margin-top: 15px;
+    color: #FFF554;
+}
