@@ -28,22 +28,15 @@ if (isset($_GET['action'])) {
 
 if ($action == 'add') {
 
-    if (!empty($_POST)) {
+    if (isset($_POST['data'])) {
+        echo "200";
+        $data = json_decode($_POST['data'], true);
 
-        $game_name = $_GET['game'];
+        server_add($link, $data);
 
-        $sum = array($_POST['sum1'], $_POST['sum2'], $_POST['sum3']);
-        $cost = array($_POST['cost1'], $_POST['cost2'], $_POST['cost3']);
-
-        server_add($link, $game_name, $_POST['server_name'], $sum, $cost);
-        header("Location: index.php?game=" . $game_name);
-
+        header("Location: index.php?game=" . $data['game_name']);
     }
 
-
-    //$server = array('server_name' => '', '1kk' => '', '100kk' => '', '1000kk' => '',);
-
-    // include("../views/server_admin.php");
 
 } else if ($action == 'delete') {
 

@@ -29,49 +29,57 @@ header("Content-Type: text/html; charset=utf-8");
                         </ul>
                     </li>
                     <li><a href="../index.php">Home</a></li>
-
                 </ul>
             </nav>
         </div>
     </div>
 </header>
 
-<div id="serverModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div id="serverModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document" >
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Добавить сервер</h3>
             </div>
-            <div class="modal-body">
-                <form 
-                      >
-                    <div class="form-inline form-group">
-                        <label for="inputName">Server_name</label>
-                        <input type="text" id="inputName" class="form-control form-item" name="server_name"
-                                required>
-                        <button class="btn" id="addCoef">Add one more</button>
-                    </div>
-
-                    <div class="form-inline form-group">
-                        <label class="modallbl" for="sum1">Gold</label>
-                        <input type="text" id="sum1" class="form-control form-item" name="sum1" required>
-                        <label class="modallbl" for="cost1">Coefficient</label>
-                        <input type="text" id="cost1" class="form-control form-item" name="cost1" required>
-                    </div>
-
-
-                    <input type="submit" class="btn" value="Save">
-
-                </form>
+            <div class="modal-body" id="modalBody">
+                <div class="form-inline form-group">
+                    <label for="inputName">Server_name</label>
+                    <input type="text" id="inputName" class="form-control form-item" name="server_name"
+                           required>
+                    <input type="hidden" id="gameName" value="<?= $GLOBALS['game_name']?>">
+                  <!--  <button class="btn" id="addCoef">Add one more</button> -->
+                </div>
+                <div class="form-group coef">
+                    <label class="modallbl" for="sum">1k</label>
+                    <input type="hidden" id="sum" class="form-control form-item" value="1000" required>
+                    <label class="modallbl" for="cost">Coefficient</label>
+                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                </div>
+                <div class="form-group coef">
+                    <label class="modallbl" for="sum">1kk</label>
+                    <input type="hidden" id="sum" class="form-control form-item" value="1000000" required>
+                    <label class="modallbl" for="cost">Coefficient</label>
+                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                </div>
+                <div class="form-group coef">
+                    <label class="modallbl" for="sum">1kkk</label>
+                    <input type="hidden" id="sum" class="form-control form-item" value="1000000000" required>
+                    <label class="modallbl" for="cost">Coefficient</label>
+                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="Save" data-dismiss="modal" aria-hidden="true">Save</button>
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="container" id="all">
     <h1 id="tableName"><?= $GLOBALS['game_name'] ?></h1>
-    <table id="dataTable" class="table  table-bordered table-hover table-responsive" >
+    <table id="dataTable" class="table  table-bordered table-hover table-responsive">
         <thead>
         <tr>
             <?php foreach ($servers as $s):
@@ -87,9 +95,11 @@ header("Content-Type: text/html; charset=utf-8");
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($servers as $s){
+        <?php foreach ($servers as $s) {
             echo '<tr>';
             foreach ($s as $key => $v) {
+                if($s[$key] == '0' )
+                    $s[$key] = "-";
                 echo "<td>{$s[$key]}</td>";
             }
             echo "<td id=\"buttonTh\"><a class=\"btn btn-danger\"
@@ -97,16 +107,13 @@ header("Content-Type: text/html; charset=utf-8");
             </td>";
             echo '</tr>';
         } ?>
-
         </tbody>
-
-
     </table>
 </div>
 
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="../scripts/Admin.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../scripts/Admin.js"></script>
 </body>
 </html>

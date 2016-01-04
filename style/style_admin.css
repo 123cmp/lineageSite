@@ -27,12 +27,10 @@ white-space:nowrap;
 }
 
 .modallbl{
-
   margin-right: 10pt;
   margin-left: 4pt;
 }
 
 #inputName{
-
-  width: 61%;
+  width: 100%;
 }
