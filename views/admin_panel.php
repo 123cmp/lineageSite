@@ -54,19 +54,19 @@ header("Content-Type: text/html; charset=utf-8");
                     <label class="modallbl" for="sum">1k</label>
                     <input type="hidden" id="sum" class="form-control form-item" value="1000" required>
                     <label class="modallbl" for="cost">Coefficient</label>
-                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                    <input type="number" id="cost" class="form-control form-item" name="cost" required>
                 </div>
                 <div class="form-group coef">
                     <label class="modallbl" for="sum">1kk</label>
                     <input type="hidden" id="sum" class="form-control form-item" value="1000000" required>
                     <label class="modallbl" for="cost">Coefficient</label>
-                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                    <input type="number" id="cost" class="form-control form-item" name="cost" required>
                 </div>
                 <div class="form-group coef">
                     <label class="modallbl" for="sum">1kkk</label>
                     <input type="hidden" id="sum" class="form-control form-item" value="1000000000" required>
                     <label class="modallbl" for="cost">Coefficient</label>
-                    <input type="text" id="cost" class="form-control form-item" name="cost" required>
+                    <input type="number" id="cost" class="form-control form-item" name="cost" required>
                 </div>
             </div>
             <div class="modal-footer">
