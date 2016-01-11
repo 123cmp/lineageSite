@@ -9,9 +9,9 @@ $(document).ready(function(){
 
     if($('#gameName').val() == 'lineage_free'){
 
-        $('#modalBody').append("<div class=\"form-inline form-group coef\">\n<label class=\"modallbl\" for=\"sum\">Col</label>"+
+        $('#modalBody').append("<div class=\"form-group coef\">\n<label class=\"modallbl\" for=\"sum\">Col</label>"+
             "\n<input type=\"hidden\" id=\"sum\" class=\"form-control form-item\" value=\"1\" required>"+
-            "\n<label class=\"modallbl\" for=\"cost\">Coefficient</label>\n<input type=\"number\" id=\"cost\""+
+            "\n<label class=\"modallbl\" for=\"cost\">Coefficient</label>\n<input type=\"number\" id=\"col_cost\""+
             "class=\"form-control form-item\"required>\n</div>");
     }
 
@@ -38,11 +38,12 @@ $(document).ready(function(){
             result.coef.push({sum: $(inputs.get(0)).val(),
                 cost: $(inputs.get(1)).val()});
         });
+        result.col_coef = $('#col_cost').val();
         result.server_name = $('#inputName').val();
         result.game_name = $('#gameName').val();
 
         data = JSON.stringify(result);
-
+        console.log(data);
         $.ajax({
             url: '../admin/index.php?action=add',
             method: 'POST',

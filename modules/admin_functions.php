@@ -16,7 +16,36 @@ function servers_all($link, $game_name)
     foreach ($servers as $s) {
         $id[] = $s['id'];
     }
+    if($game_name == 'lineage_free'){
+        $query = "SELECT sum,cost,col FROM coefficients  INNER JOIN " . $game_name . " ON coefficients.server_id = " . $game_name . ".id WHERE coefficients.server_id = " . $game_name . ".id";
+        $result = mysqli_query($link, $query);
+        if (!$result)
+            die(mysqli_error($link));
+        $coef = array();
+        while ($row = mysqli_fetch_assoc($result)) {
 
+            $coef[] = $row;
+        }
+        $v = 0;
+        $k = ["1k", "1kk", "1kkk"];
+        if(!isset($servers))
+            return false;
+        for ($j = 0; $j < count($servers); $j++) {
+            for ($i = 0; $i <= count($coef[$v]); $i++) {
+                if($coef[$v]['col'] == false){
+               //$servers[$j]["sum_$i"] = $coef[$v]['sum'];
+                $servers[$j][$k[$i]] = $coef[$v]['cost'];
+                } else {
+                   $servers[$j]['col'] = $coef[$v]['cost']; 
+                }
+
+                $v++;
+                if (!isset($coef[$v])) {
+                    break;
+                }
+            }
+        }
+    } else {
     $query = "SELECT sum,cost FROM coefficients  INNER JOIN " . $game_name . " ON coefficients.server_id = " . $game_name . ".id WHERE coefficients.server_id = " . $game_name . ".id";
     $result = mysqli_query($link, $query);
     if (!$result)
@@ -30,9 +59,9 @@ function servers_all($link, $game_name)
     $k = ["1k", "1kk", "1kkk"];
     if(!isset($servers))
         return false;
+
     for ($j = 0; $j < count($servers); $j++) {
         for ($i = 0; $i <= count($coef[$v]); $i++) {
-
            //$servers[$j]["sum_$i"] = $coef[$v]['sum'];
             $servers[$j][$k[$i]] = $coef[$v]['cost'];
             $v++;
@@ -40,6 +69,7 @@ function servers_all($link, $game_name)
                 break;
             }
         }
+    }
     }
     return $servers;
 }
@@ -79,6 +109,15 @@ function server_add($link, $data){
         $result = mysqli_query($link, $query);
 
     }
+    if(isset($data['col_coef'])){
+    $t = "INSERT INTO coefficients (server_id, sum, cost, game_name, col) VALUES ('%d', '%f', '%f', '%s', '%d')";
+        $query = sprintf($t, mysqli_real_escape_string($link, $id),
+            mysqli_real_escape_string($link, 1),
+            mysqli_real_escape_string($link, $data['col_coef']),
+            mysqli_real_escape_string($link, $data['game_name']),
+            mysqli_real_escape_string($link, 1));
+        $result = mysqli_query($link, $query);
+    }   
 
 }
 
