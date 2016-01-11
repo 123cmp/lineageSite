@@ -21,11 +21,11 @@ $connection = Connection::getInstance();
 $link = $connection->getLink();
 
 if(!isset($_GET['game']))
-    $game = 'lineage_classic_euro';
+    $game = 'lineage_free';
 else
     $game = $_GET['game'];
 
-$coefficients = getGameCoefficients($link, $game);
+$coefficients = getGameCoefficients($link, $game, true);
 $servers = getGameServers($link, $game);
 
 foreach($servers as $i => $server) {
@@ -66,7 +66,7 @@ function str_replace_first($search, $replace, $subject) {
 ?>
 
 <div class="calc">
-    <h2>Калькулятор</h2>
+    <h2>Калькулятор COL</h2>
     <div class="first">
         <form>
             <label>
@@ -113,9 +113,7 @@ function str_replace_first($search, $replace, $subject) {
             <thead>
             <tr>
                 <th>Сервер</th>
-                <th>от 1к</th>
-                <th>от 1кк</th>
-                <th>от 1ккк</th>
+                <th>1 COL</th>
             </tr>
             </thead>
             <tbody>
@@ -123,10 +121,7 @@ function str_replace_first($search, $replace, $subject) {
                 foreach($data as $i => $server) {
                     echo "<tr>
                         <td>{$server->name}</td>
-                        <td>{$server->getMoney(1000)}</td>
-                        <td>{$server->getMoney(1000000)}</td>
-                        <td>{$server->getMoney(1000000000)}</td>
-
+                        <td>{$server->getMoney(1)}</td>
                     </tr>";
                 }
             ?>
@@ -143,6 +138,7 @@ function str_replace_first($search, $replace, $subject) {
         var second = $('.calc .second');
         var money = $('.money');
         var adena = $('.adena');
+
 
         jQuery.validator.addMethod("formated", function(value, element) {
             return Number.isInteger(number_unformat(value));
@@ -183,6 +179,7 @@ function str_replace_first($search, $replace, $subject) {
                         action: 'saverequest',
                         game: '<?php echo $game ?>',
                         server: $('.server').val(),
+                        col: true,
                         money: number_unformat($('.money').val()),
                         adena: number_unformat($('.adena').val()),
                         nickname: $('.nickname').val(),
@@ -193,6 +190,7 @@ function str_replace_first($search, $replace, $subject) {
                         if(res.responseText == 'OK') {
                             $.notific8('Заявка отправлена', {theme: 'shamrock', family: 'chicchat'});
                         } else {
+                            console.log(res);
                             $.notific8('Произошла ошибка', {theme: 'ruby', family: 'chicchat'});
                         }
                     }
@@ -201,8 +199,8 @@ function str_replace_first($search, $replace, $subject) {
             return false;
         });
         var adenaCalc = new AdenaCalc(
-            money,
-            adena
+            adena,
+            money
         );
 
         var coefficients = <?php echo json_encode($data) ?>;
@@ -219,8 +217,8 @@ function str_replace_first($search, $replace, $subject) {
                 },
                 adena: {
                     required: true,
-                    fmin: 10,
-                    fmax: 190000000000,
+                    fmin: 1,
+                    fmax: 19000,
                     formated: true
                 }
             },
@@ -233,10 +231,10 @@ function str_replace_first($search, $replace, $subject) {
                     formated: 'Не корректная сумма денег'
                 },
                 adena: {
-                    required: 'Пожалуйста введите количество адены',
-                    fmin: 'Введенное количество адены меньше минимального',
-                    fmax: 'Введенное количество адены меньше больше максимального',
-                    formated: 'Не корректное количество адены'
+                    required: 'Пожалуйста введите количество COL',
+                    fmin: 'Введенное количество COL меньше минимального',
+                    fmax: 'Введенное количество COL больше максимального',
+                    formated: 'Не корректное количество COL'
                 }
             }
         });

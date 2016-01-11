@@ -1,8 +1,10 @@
 <?php
 
-function getGameCoefficients($link, $game_name) {
+function getGameCoefficients($link, $game_name, $col) {
     $game_name = mysqli_real_escape_string($link, (string) $game_name);
-    $query = "SELECT * FROM coefficients WHERE game_name = '".$game_name."' ORDER BY c_id DESC";
+    $cause = " AND col = 0 ";
+    if($col) $cause = " AND col = 1 ";
+    $query = "SELECT * FROM coefficients WHERE game_name = '".$game_name."' {$cause} ORDER BY sum ASC";
 
     $result = mysqli_query($link,$query);
 
@@ -51,9 +53,9 @@ function adenaToMoney($adena, $coefficient) {
 }
 
 function saveRequest($link, $request) {
-    $query = "INSERT INTO orders (game, server, money, adena, nickname, contact, comment)
+    $query = "INSERT INTO orders (game, server, money, adena, nickname, contact, comment, col)
       VALUES ('{$request->game}', '{$request->server}', {$request->money}, {$request->adena},
-      '{$request->nickname}', '{$request->contact}', '{$request->comment}')";
+      '{$request->nickname}', '{$request->contact}', '{$request->comment}', '{$request->col}')";
 
     $result = mysqli_query($link, $query);
 

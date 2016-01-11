@@ -1,5 +1,6 @@
 <?php
     require_once("static/Connection.php");
+    require_once("modules/Paginator.php");
     $connection = Connection::getInstance();
     $connection->connect();
 
@@ -15,13 +16,14 @@
                 $money = $_POST['money'];
                 $adena = $_POST['adena'];
                 $server = $_POST['server'];
+                $col = $_POST['col'];
                 $nickname = $_POST['nickname'];
                 $contact = $_POST['contact'];
                 $comment = $_POST['comment'];
 
                 $link = $connection->getLink();
 
-                $request = new Request($game, $server, $money, $adena,
+                $request = new Request($game, $server, $col, $money, $adena,
                     $nickname, $contact, $comment, $link);
 
                 if($request->isValid()) {
@@ -47,12 +49,12 @@
     <title>Luxory-trade.ru</title>
     <link rel="shortcut icon" href="Favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="/style/style.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,900,700,100&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
-    <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="bower_components/notific8/dist/jquery.notific8.min.css" rel="stylesheet" />
+    <link href="/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="/bower_components/notific8/dist/jquery.notific8.min.css" rel="stylesheet" />
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
 <div class="bg2">
@@ -61,13 +63,13 @@
     <div class="content">
         <header>
 <!--            <div class="logo">Logo</div>-->
-            <h1 class="site-name">Luxory-<span>trade</span>.ru</h1>
+            <a href="/main"><h1 class="site-name">Luxory-<span>trade</span>.ru</h1></a>
             <nav>
                 <ul class="main-menu">
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Гарантии</a></li>
-                    <li><a href="#">Поставщикам</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="/main">Главная</a></li>
+                    <li><a href="/guarantee">Гарантии</a></li>
+                    <li><a href="/importers">Поставщикам</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
                 </ul>
             </nav>
         </header>
@@ -77,31 +79,31 @@
                 <ul class="lineage-list">
                     <li>
                         <h3>Lineage II (RUS)</h3>
-                        <a href="/?game=lineage_rus">Купить Адену</a>
+                        <a href="/game/lineage_rus">Купить Адену</a>
                     </li>
                     <li>
                         <h3>Lineage II Classic (RUS)</h3>
-                        <a href="/?game=lineage_classic_rus">Купить Адену</a>
+                        <a href="/game/lineage_classic_rus">Купить Адену</a>
                     </li>
                     <li>
                         <h3>Lineage II Classic (Euro)</h3>
-                        <a href="/?game=lineage_classic_euro">Купить Адену</a>
+                        <a href="/game/lineage_classic_euro">Купить Адену</a>
                     </li>
                     <li>
                         <h3>Lineage (Free)</h3>
-                        <a href="/?game=lineage_free">Купить Адену</a><br/>
-                        <a href="#">Купить Col</a>
+                        <a href="/game/lineage_free">Купить Адену</a><br/>
+                        <a href="/game/lineage_free/col">Купить COL</a>
                     </li>
                 </ul>
 
                 <ul class="other-games">
                     <li>
                         <h3>Dota 2</h3>
-                        <a href="#">Купить Предметы</a>
+                        <a href="/rework">Купить Предметы</a>
                     </li>
                     <li>
                         <h3>CS : GO</h3>
-                        <a href="#">Купить Предметы</a>
+                        <a href="/rework">Купить Предметы</a>
                     </li>
                 </ul>
             </div>
@@ -109,14 +111,37 @@
 
             <div class="main-content gradient-transparent">
                 <!-- /*CALC HERE*/ -->
-                <?php include 'views/calc.php'; ?>
+                <?php
+                $col = $_GET['col'];
+                $game = $_GET['game'];
+                $page = $_GET['page'];
+
+                if(isset($game)) {
+                    if($col == 'true') {
+                        include 'views/colCalc.php';
+                    } else {
+                        include 'views/calc.php';
+                    }
+                    echo "<br/>Покупка и продажа игровой валюты запрещена правилами и лицензионными соглашениями. Покупая, вы полностью берете на себя ответственность за безопасность вашего персонажа/аккаунта.";
+                } else {
+                    if(isset($page)) {
+                        include getPage($page);
+                    } else {
+                        include 'views/main.php';
+                    }
+                }
+                ?>
+
+
+
             </div>
 
             <div class="left-content gradient-transparent">
                 <div class="contacts">
                     <ul>
-                        <li>Skype: qweasd</li>
-                        <li>Email: qweasd@gmail.com</li>
+                        <li>Skype: Luxory-Trade</li>
+                        <li>ISQ: 691610986</li>
+                        <li>@-mail: admin@luxory-trade.ru</li>
                     </ul>
                 </div>
             </div>
@@ -125,21 +150,21 @@
         <footer>
             <nav>
                 <ul class="duplicate-menu">
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Гарантии</a></li>
-                    <li><a href="#">Поставщикам</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="/main">Главная</a></li>
+                    <li><a href="/guarantee">Гарантии</a></li>
+                    <li><a href="/importers">Поставщикам</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
                 </ul>
             </nav>
             <p>All rights reserved</p>
         </footer>
     </div>
 
-    <script src="scripts/digitsOnly.js"></script>
-    <script src="scripts/formatNumbers.js"></script>
-    <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-    <script src="bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="bower_components/notific8/dist/jquery.notific8.min.js"></script>
-    <script src="scripts/AdenaCalc.js"></script>
+    <script src="/scripts/digitsOnly.js"></script>
+    <script src="/scripts/formatNumbers.js"></script>
+    <script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/bower_components/notific8/dist/jquery.notific8.min.js"></script>
+    <script src="/scripts/AdenaCalc.js"></script>
 </body>
 </html>

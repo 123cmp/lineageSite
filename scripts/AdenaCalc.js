@@ -29,6 +29,7 @@ function AdenaCalc(moneyField, adenaField) {
     function calculateMoneyToAdena() {
         var value = moneyField.val();
         var coefficientId = findCoefficient(value, MONEY_TO_ADENA);
+        console.log(value);
         chooseCoefficient(coefficientId);
         calculate(MONEY_TO_ADENA);
     }
@@ -51,13 +52,14 @@ function AdenaCalc(moneyField, adenaField) {
             lastCoefficient = self.coefficients[lastCoefficientId],
             firstCoefficient = self.coefficients[0];
 
-        if(convertFunction(value, firstCoefficient) < firstCoefficient.count)
+        console.log(self.coefficients);
+        if(convertFunction(value, firstCoefficient) < parseInt(firstCoefficient.count))
             coefficientId = 0;
-        else if(convertFunction(value, lastCoefficient) > lastCoefficient.count)
+        else if(convertFunction(value, lastCoefficient) > parseInt(lastCoefficient.count))
             coefficientId = self.coefficients.length - 1;
         else
             self.coefficients.forEach(function(coefficient, i) {
-                if(convertFunction(value, coefficient) >= coefficient.count) {
+                if(convertFunction(value, coefficient) >= parseInt(coefficient.count)) {
                     coefficientId = i
                 }
             });

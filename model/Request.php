@@ -4,11 +4,12 @@ require_once 'modules/client_functions.php';
 require_once 'model/Coefficient.php';
 
 class Request {
-    public function __construct($game, $server, $money, $adena, $nickname, $contact, $comment, $link) {
+    public function __construct($game, $server, $col, $money, $adena, $nickname, $contact, $comment, $link) {
         $this->game = mysqli_real_escape_string($link, $game);
         $this->server = mysqli_real_escape_string($link, $server);
         $this->money = mysqli_real_escape_string($link, $money);
         $this->adena = mysqli_real_escape_string($link, $adena);
+        $this->col = $col == true ? 1 : 0;
         $this->nickname = mysqli_real_escape_string($link, $nickname);
         $this->contact = mysqli_real_escape_string($link, $contact);
         $this->comment = mysqli_real_escape_string($link, $comment);
@@ -16,6 +17,11 @@ class Request {
     }
 
     public function isValid() {
+        if($this->col) {
+            $buff = $this->money;
+            $this->money = $this->adena;
+            $this->adena = $buff;
+        }
         $valid = true;
         if(!$this->game || !$this->server || !$this->money || !$this->adena || !$this->nickname || !$this->contact)
             $valid = false;
@@ -40,7 +46,7 @@ class Request {
         if(!$serverExists) $valid = false;
 
 
-        $coefficients = getGameCoefficients($this->link, $this->game);
+        $coefficients = getGameCoefficients($this->link, $this->game, $this->col);
         $serverCoefficients = [];
         foreach($coefficients as $i => $coefficient) {
                 if($coefficient["server_id"] === $serverId)
@@ -53,7 +59,6 @@ class Request {
 
         $money = adenaToMoney($this->adena, $serverCoefficients[$coefficientId]);
         if($money != $this->money) $valid = false;
-
         return $valid;
     }
 }

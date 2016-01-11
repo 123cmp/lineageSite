@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Янв 11 2016 г., 15:27
--- Версия сервера: 5.5.46-0ubuntu0.14.04.2
--- Версия PHP: 5.5.9-1ubuntu4.14
+-- Host: localhost
+-- Generation Time: Jan 11, 2016 at 06:25 PM
+-- Server version: 5.5.46-0ubuntu0.14.04.2
+-- PHP Version: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `lineageSite`
+-- Database: `lineageSite`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `coefficients`
+-- Table structure for table `coefficients`
 --
 
 CREATE TABLE IF NOT EXISTS `coefficients` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `coefficients` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
 
 --
--- Дамп данных таблицы `coefficients`
+-- Dumping data for table `coefficients`
 --
 
 INSERT INTO `coefficients` (`sum`, `cost`, `c_id`, `server_id`, `game_name`, `col`) VALUES
@@ -62,15 +62,14 @@ INSERT INTO `coefficients` (`sum`, `cost`, `c_id`, `server_id`, `game_name`, `co
 (1000000000, 12, 73, 5, 'lineage_free', 0),
 (1, 2222, 75, 5, 'lineage_free', 1),
 (1000, 12, 76, 6, 'lineage_free', 0),
-(1000000, 123, 77, 6, 'lineage_free', 0),
-(1000000000, 213, 78, 6, 'lineage_free', 0),
-(1, 44, 79, 6, 'lineage_free', 0),
+(1000000, 11, 77, 6, 'lineage_free', 0),
+(1000000000, 10, 78, 6, 'lineage_free', 0),
 (1, 44, 80, 6, 'lineage_free', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lineage_classic_euro`
+-- Table structure for table `lineage_classic_euro`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_classic_euro` (
@@ -82,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `lineage_classic_euro` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lineage_classic_rus`
+-- Table structure for table `lineage_classic_rus`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_classic_rus` (
@@ -92,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `lineage_classic_rus` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `lineage_classic_rus`
+-- Dumping data for table `lineage_classic_rus`
 --
 
 INSERT INTO `lineage_classic_rus` (`id`, `server_name`) VALUES
@@ -101,7 +100,7 @@ INSERT INTO `lineage_classic_rus` (`id`, `server_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lineage_free`
+-- Table structure for table `lineage_free`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_free` (
@@ -111,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `lineage_free` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Дамп данных таблицы `lineage_free`
+-- Dumping data for table `lineage_free`
 --
 
 INSERT INTO `lineage_free` (`id`, `server_name`) VALUES
@@ -122,7 +121,7 @@ INSERT INTO `lineage_free` (`id`, `server_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lineage_rus`
+-- Table structure for table `lineage_rus`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_rus` (
@@ -132,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `lineage_rus` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 --
--- Дамп данных таблицы `lineage_rus`
+-- Dumping data for table `lineage_rus`
 --
 
 INSERT INTO `lineage_rus` (`id`, `server_name`) VALUES
@@ -144,7 +143,7 @@ INSERT INTO `lineage_rus` (`id`, `server_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -158,18 +157,23 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `comment` varchar(256) NOT NULL,
   `status` enum('new','done') NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `col` tinyint(1) NOT NULL,
   PRIMARY KEY (`o_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
--- Дамп данных таблицы `orders`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`o_id`, `game`, `server`, `money`, `adena`, `nickname`, `contact`, `comment`, `status`, `time`) VALUES
-(18, 'lineage_rus', 'Valera x100', 111, 1055, 'sfsdf', 'sdfsdf', 'qweqweq', 'done', '2016-01-04 09:39:25'),
-(19, 'lineage_rus', 'Averia x100500', 1233, 287289, 'Valera', 'rewq', 'admin-loh', 'new', '2016-01-04 09:01:08'),
-(20, 'lineage_rus', 'Averia x100500', 1233, 287289, 'Valera', 'rewq', 'admin-loh', 'done', '2016-01-04 09:03:41'),
-(22, 'lineage_rus', '11111', 247, 1233, 'qwe', 'qwe', 'qqwe', 'done', '2016-01-04 13:53:15');
+INSERT INTO `orders` (`o_id`, `game`, `server`, `money`, `adena`, `nickname`, `contact`, `comment`, `status`, `time`, `col`) VALUES
+(18, 'lineage_rus', 'Valera x100', 111, 1055, 'sfsdf', 'sdfsdf', 'qweqweq', 'done', '2016-01-04 09:39:25', 0),
+(19, 'lineage_rus', 'Averia x100500', 1233, 287289, 'Valera', 'rewq', 'admin-loh', 'new', '2016-01-04 09:01:08', 0),
+(20, 'lineage_rus', 'Averia x100500', 1233, 287289, 'Valera', 'rewq', 'admin-loh', 'done', '2016-01-04 09:03:41', 0),
+(22, 'lineage_rus', '11111', 247, 1233, 'qwe', 'qwe', 'qqwe', 'done', '2016-01-04 13:53:15', 0),
+(23, 'lineage_rus', 'Averia', 1111, 1111, '111', '111', '111111111', 'new', '2016-01-11 16:06:26', 0),
+(24, 'lineage_free', 'Averia x12', 10, 440, 'qwe', 'qwe', 'qwe', 'new', '2016-01-11 16:24:16', 1),
+(25, 'lineage_free', 'Averia x12', 10, 440, 'qweq', 'qweq', 'qweq', 'new', '2016-01-11 16:24:33', 1),
+(26, 'lineage_free', 'Averia x12', 12003, 144036, 'asad', 'asd', 'asdasd', 'new', '2016-01-11 16:24:57', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
