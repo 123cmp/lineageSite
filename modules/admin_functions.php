@@ -81,9 +81,26 @@ function orders_get($link)
     if (!$result)
         die(mysqli_error($link));
     $orders = array();
+    $i = 0;
     while ($row = mysqli_fetch_assoc($result)) {
 
-        $orders[] = $row;
+        $orders[$i]['id'] = $row['o_id'];
+        $orders[$i]['game'] = $row['game'];
+        $orders[$i]['server'] = $row['server'];
+        $orders[$i]['money'] = $row['money'];
+
+        if($row['col'] == 1){
+            $orders[$i]['adena'] = $row['adena']." <b>col</b>";
+        } else {
+            $orders[$i]['adena'] = $row['adena'];
+        }
+
+        $orders[$i]['nickname'] = $row['nickname'];
+        $orders[$i]['contact'] = $row['contact'];
+        $orders[$i]['comment'] = $row['comment'];
+        $orders[$i]['status'] = $row['status'];
+        $orders[$i]['time'] = $row['time'];
+        $i++;
     }
     return $orders;
 }
