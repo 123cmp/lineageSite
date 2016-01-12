@@ -114,32 +114,33 @@
                 </ul>
             </div>
 
+            <div class="main-content-wrapper">
+                <div class="main-content gradient-transparent">
+                    <!-- /*CALC HERE*/ -->
+                    <?php
+                    $col = $_GET['col'];
+                    $game = $_GET['game'];
+                    $page = $_GET['page'];
 
-            <div class="main-content gradient-transparent">
-                <!-- /*CALC HERE*/ -->
-                <?php
-                $col = $_GET['col'];
-                $game = $_GET['game'];
-                $page = $_GET['page'];
-
-                if(isset($game)) {
-                    if($col == 'true') {
-                        include 'views/colCalc.php';
+                    if(isset($game)) {
+                        if($col == 'true') {
+                            include 'views/colCalc.php';
+                        } else {
+                            include 'views/calc.php';
+                        }
+                        echo "<br/><p class='lower'>Покупка и продажа игровой валюты запрещена правилами и лицензионными соглашениями. Покупая, вы полностью берете на себя ответственность за безопасность вашего персонажа/аккаунта.</p>";
                     } else {
-                        include 'views/calc.php';
+                        if(isset($page)) {
+                            include getPage($page);
+                        } else {
+                            include 'views/main.php';
+                        }
                     }
-                    echo "<br/>Покупка и продажа игровой валюты запрещена правилами и лицензионными соглашениями. Покупая, вы полностью берете на себя ответственность за безопасность вашего персонажа/аккаунта.";
-                } else {
-                    if(isset($page)) {
-                        include getPage($page);
-                    } else {
-                        include 'views/main.php';
-                    }
-                }
-                ?>
+                    ?>
 
 
 
+                </div>
             </div>
 
             <div class="left-content gradient-transparent">
