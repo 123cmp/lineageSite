@@ -15,18 +15,23 @@ a {
 }
 
 body {
-    background: url('bg.png') no-repeat rgb(243, 243, 243) -24% 0;
-    background-size: 50%;
+    background: url('bg3.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;   
+   /* background: url('bg.png') no-repeat rgb(243, 243, 243) -24% 0;
+    background-size: 50%;*/
 }
 
-.bg2 {
+/*.bg2 {
     width: 100%;
     height: 100%;
     background: url('bg2.png') no-repeat rgba(231,225,255,0.1) 89% 0;
     background-size: 43%;
     position: absolute;
     z-index: -6;
-}
+}*/
 
 .content {
     width: 80%;
