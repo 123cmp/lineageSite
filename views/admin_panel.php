@@ -17,15 +17,15 @@ header("Content-Type: text/html; charset=utf-8");
             <nav>
                 <a href="#" id="logo">Admin Panel</a>
                 <ul class="nav pull-right nav-pills">
-                    <li><a href="../admin/index.php?orders=true">Orders</a></li>
+                    <li><a href="../a!dmin/index.php?orders=true">Orders</a></li>
                     <li id="fat-menu" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Games</a>
                         <ul class="dropdown-menu">
-                            <li><a href="../admin/index.php?game=lineage_rus">Lineage II rus</a></li>
-                            <li><a href="../admin/index.php?game=lineage_classic_rus">Lineage II classic rus</a></li>
-                            <li><a href="../admin/index.php?game=lineage_classic_euro">Lineage II classic euro</a></li>
-                            <li><a href="../admin/index.php?game=lineage_free">Lineage II free</a></li>
+                            <li><a href="../a!dmin/index.php?game=lineage_rus">Lineage II rus</a></li>
+                            <li><a href="../a!dmin/index.php?game=lineage_classic_rus">Lineage II classic rus</a></li>
+                            <li><a href="../a!dmin/index.php?game=lineage_classic_euro">Lineage II classic euro</a></li>
+                            <li><a href="../a!dmin/index.php?game=lineage_free">Lineage II free</a></li>
                         </ul>
                     </li>
                     <li><a href="../index.php">Home</a></li>
@@ -102,7 +102,8 @@ header("Content-Type: text/html; charset=utf-8");
                     $s[$key] = "-";
                 echo "<td>{$s[$key]}</td>";
             }
-            echo ">Delete</a>
+            echo "<td id=\"buttonTh\"><a class=\"btn btn-danger\"
+                                 href=\"../a!dmin/index.php?action=delete&id={$s{'id'}}\">Delete</a>
             </td>";
             echo '</tr>';
         } ?>
