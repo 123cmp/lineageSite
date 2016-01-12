@@ -5,7 +5,7 @@ require_once('model/Server.php');
 require_once('modules/client_functions.php');
 require_once('static/Connection.php');
 
-$data = [];
+$data = array();
 
 //for($i = 0; $i < 3; $i ++) {
 //    $coefficients = [
@@ -29,7 +29,7 @@ $coefficients = getGameCoefficients($link, $game, true);
 $servers = getGameServers($link, $game);
 
 foreach($servers as $i => $server) {
-    $serverCoefficients = [];
+    $serverCoefficients = array();
     foreach($coefficients as $j => $coefficient) {
         if($coefficient["server_id"] === $server["id"])
             array_push($serverCoefficients,
@@ -79,11 +79,11 @@ function str_replace_first($search, $replace, $subject) {
             </label>
             <br/>
             <label>
-                <input class="money" pattern="\d+" name="money" type="text" placeholder="Я заплачу">
+                <input class="money" pattern="\d+" name="money" type="text" placeholder="Заплачу">
             </label>
             <br/>
             <label>
-                <input class="adena" pattern="\d+" name="adena" type="text" placeholder="Я получу">
+                <input class="adena" pattern="\d+" name="adena" type="text" placeholder="Получу">
             </label>
             <br/>
             <button>Далее</button>

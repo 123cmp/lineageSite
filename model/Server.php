@@ -2,7 +2,7 @@
 
 class Server {
 
-    public $coefficients = [];
+    public $coefficients = array();
     public $id = 0;
     public $name = "";
 

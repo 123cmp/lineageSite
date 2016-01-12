@@ -27,7 +27,7 @@ function servers_all($link, $game_name)
             $coef[] = $row;
         }
         $v = 0;
-        $k = ["1k", "1kk", "1kkk"];
+        $k = array("1k", "1kk", "1kkk");
         if(!isset($servers))
             return false;
         for ($j = 0; $j < count($servers); $j++) {
@@ -56,7 +56,7 @@ function servers_all($link, $game_name)
         $coef[] = $row;
     }
     $v = 0;
-    $k = ["1k", "1kk", "1kkk"];
+    $k = array("1k", "1kk", "1kkk");
     if(!isset($servers))
         return false;
 
