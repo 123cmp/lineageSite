@@ -69,6 +69,7 @@
                     <li><a href="/main">Главная</a></li>
                     <li><a href="/guarantee">Гарантии</a></li>
                     <li><a href="/importers">Поставщикам</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
                     <li><a href="/contacts">Контакты</a></li>
                 </ul>
             </nav>
@@ -94,6 +95,11 @@
                         <a href="/game/lineage_free">Купить Адену</a><br/>
                         <a href="/game/lineage_free/col">Купить COL</a>
                     </li>
+                    <li>
+                        <h3>Lineage II</h3>
+                        <a href="/rework">Купить ПО</a><br/>
+                    </li>
+
                 </ul>
 
                 <ul class="other-games">
@@ -144,6 +150,24 @@
                         <li>@-mail: admin@luxory-trade.ru</li>
                     </ul>
                 </div>
+
+                <div class="widget">
+                    <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+
+                    <!-- VK Widget -->
+                    <div id="vk_groups"></div>
+                    <script type="text/javascript">
+                        resizeWidget = function() {
+                            $('#vk_groups')[0].innerHTML = "";
+                            VK.Widgets.Group("vk_groups", {mode: 0, width: $('.contacts').outerWidth(), height: "400", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 101423341);
+                        };
+
+                        $(window).resize(resizeWidget);
+                        resizeWidget();
+                    </script>
+                </div>
+
+
             </div>
         </section>
 
@@ -153,6 +177,7 @@
                     <li><a href="/main">Главная</a></li>
                     <li><a href="/guarantee">Гарантии</a></li>
                     <li><a href="/importers">Поставщикам</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
                     <li><a href="/contacts">Контакты</a></li>
                 </ul>
             </nav>

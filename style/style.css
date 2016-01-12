@@ -117,6 +117,17 @@ header .main-menu li a:hover {
 
 .middle {
     height: 400px;
+    color: white;
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
+}
+
+.middle a {
+    color: #ff9565;
+    border-bottom: 1px dotted #ff9565;
+}
+
+.middle a:hover {
+    border-bottom: 2px dotted #ff9565;
 }
 
 .middle .side-menu {
@@ -125,7 +136,7 @@ header .main-menu li a:hover {
     margin: 0 25px 0 0;
     color: #FFFFFF;
     text-shadow: 0 0 4px #000000, 0 0 6px #000000;
-    height: 400px;
+    height: 425px;
     background-color: rgba(17, 17, 17, 0.1);;
     box-shadow: 0 0 10px rgb(87, 87, 87);
     text-align: center;
@@ -156,7 +167,7 @@ header .main-menu li a:hover {
     width: 44%;
     display: block;
     /*height: 400px;*/
-    text-align: center;
+    text-align: justify;
     background-color: rgba(17, 17, 17, 0.1);;
     box-shadow: 0 0 10px rgb(87, 87, 87);
     box-sizing: border-box;
@@ -164,9 +175,16 @@ header .main-menu li a:hover {
 }
 
 .middle .left-content {
-    text-align: center;
-    color: #FFFFFF;
+    height: 430px;
+    color: white;
     text-shadow: 0 0 4px #000000, 0 0 6px #000000;
+}
+
+
+.middle .left-content .contacts {
+    margin-left: 25px;
+    text-align: center;
+
     float: left;
     width: 23%;
     height: 130px;
@@ -174,8 +192,6 @@ header .main-menu li a:hover {
     box-shadow: 0 0 10px rgb(87, 87, 87);
     box-sizing: border-box;
     padding: 20px;
-    margin-left: 25px;
-    margin-top: 186px;
 }
 
 .middle .left-content ul {
@@ -186,8 +202,8 @@ header .main-menu li a:hover {
     border-bottom: 1px dotted rgb(115, 115, 115);
     display: inline-block;
     margin-top: 6px;
-    text-shadow: none;
-    color: black;
+    color: #FFFFFF;
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
     cursor: pointer;
 }
 
@@ -195,9 +211,19 @@ header .main-menu li a:hover {
     border-bottom: 2px dotted rgb(115, 115, 115);
 }
 
+.middle .left-content .widget {
+    margin-top: 20px;
+    margin-left: 25px;
+    display: block;
+    position: static;
+    float: left;
+}
+
 footer {
     text-align: center;
     width: 100%;
+    color: #FFFFFF;
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
 }
 
 footer .duplicate-menu {
@@ -214,7 +240,8 @@ footer .duplicate-menu li {
 
 
 footer .duplicate-menu a {
-    color: #1B1B1B;
+    color: #FFFFFF;
+    text-shadow: 0 0 4px #000000, 0 0 6px #000000;
     border-bottom: 1px dotted rgb(115, 115, 115);
 }
 

@@ -7,6 +7,7 @@ RewriteRule main /?page=main
 RewriteRule importers /?page=importers
 RewriteRule contacts /?page=contacts
 RewriteRule rework /?page=rework
+RewriteRule reviews /?page=reviews
 
 RewriteRule game/lineage_free/col /?game=lineage_free&col=true
 RewriteRule game/lineage_free /?game=lineage_free

@@ -102,8 +102,7 @@ header("Content-Type: text/html; charset=utf-8");
                     $s[$key] = "-";
                 echo "<td>{$s[$key]}</td>";
             }
-            echo "<td id=\"buttonTh\"><a class=\"btn btn-danger\"
-                                 href=\"../admin/index.php?action=delete&id={$s['id']}&game={$GLOBALS['game_name']}\">Delete</a>
+            echo ">Delete</a>
             </td>";
             echo '</tr>';
         } ?>

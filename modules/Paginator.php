@@ -15,6 +15,7 @@ function getPage($key) {
         case 'main': $page = 'views/main.php'; break;
         case 'importers': $page = 'views/importers.php'; break;
         case 'rework': $page = 'views/rework.php'; break;
+        case 'reviews': $page = 'views/reviews.php'; break;
         default: $page = 'views/404.php';
     }
 

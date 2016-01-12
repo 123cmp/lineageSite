@@ -66,7 +66,7 @@ function str_replace_first($search, $replace, $subject) {
 ?>
 
 <div class="calc">
-    <h2>Калькулятор</h2>
+    <h2>Покупка адены</h2>
     <div class="first">
         <form>
             <label>
@@ -86,7 +86,7 @@ function str_replace_first($search, $replace, $subject) {
                 <input class="adena" pattern="\d+" name="adena" type="text" placeholder="Я получу">
             </label>
             <br/>
-            <button>Пойдет</button>
+            <button>Далее</button>
         </form>
     </div>
     <div class="second" style="display: none">
@@ -103,7 +103,7 @@ function str_replace_first($search, $replace, $subject) {
                 <textarea class="comment" name="comment" placeholder="Комментарий"></textarea>
             </label>
             <br/>
-            <button>Пойдет</button>
+            <button>Оформить заказ</button>
         </form>
     </div>
 
@@ -136,7 +136,21 @@ function str_replace_first($search, $replace, $subject) {
     </div>
 
 </div>
+<style>
+    .middle .main-content {
+        text-align: center;
 
+    }
+
+    .middle .main-content form {
+        color: black;
+        text-shadow: none;
+    }
+
+    .middle .main-content table {
+        color: white;
+    }
+</style>
 <script>
     $(document).ready(function() {
         var first = $('.calc .first');
