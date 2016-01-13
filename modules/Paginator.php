@@ -16,6 +16,9 @@ function getPage($key) {
         case 'importers': $page = 'views/importers.php'; break;
         case 'rework': $page = 'views/rework.php'; break;
         case 'reviews': $page = 'views/reviews.php'; break;
+        case 'po': $page = 'views/po.php'; break;
+        case 'dota': $page = 'views/dota.php'; break;
+        case 'cs': $page = 'views/cs.php'; break;
         default: $page = 'views/404.php';
     }
 

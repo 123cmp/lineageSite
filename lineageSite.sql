@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 11, 2016 at 06:25 PM
+-- Generation Time: Jan 13, 2016 at 07:22 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -65,6 +65,43 @@ INSERT INTO `coefficients` (`sum`, `cost`, `c_id`, `server_id`, `game_name`, `co
 (1000000, 11, 77, 6, 'lineage_free', 0),
 (1000000000, 10, 78, 6, 'lineage_free', 0),
 (1, 44, 80, 6, 'lineage_free', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cs`
+--
+
+CREATE TABLE IF NOT EXISTS `cs` (
+  `name` varchar(128) NOT NULL,
+  `cost` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cs`
+--
+
+INSERT INTO `cs` (`name`, `cost`) VALUES
+('knife', '100$');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dota`
+--
+
+CREATE TABLE IF NOT EXISTS `dota` (
+  `name` varchar(128) NOT NULL,
+  `cost` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dota`
+--
+
+INSERT INTO `dota` (`name`, `cost`) VALUES
+('set', '300$'),
+('other set', '400$');
 
 -- --------------------------------------------------------
 

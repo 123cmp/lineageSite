@@ -15,4 +15,7 @@ RewriteRule game/lineage_rus /?game=lineage_rus
 RewriteRule game/lineage_classic_rus /?game=lineage_classic_rus
 RewriteRule game/lineage_classic_euro /?game=lineage_classic_euro
 
+RewriteRule programs /?page=po
+RewriteRule dota /?page=dota
+RewriteRule csgo /?page=cs
 

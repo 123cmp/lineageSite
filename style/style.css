@@ -394,3 +394,24 @@ input.error {
 .lower {
     font-size: 0.7em;
 }
+
+.adrenalin {
+    background: url('/style/adrenalin_logo-2-500x500.png')  0;
+    width: 200px;
+    height: 95px;
+    background-size: cover;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.red {
+    color: #ff2a00;
+}
+
+.game-table {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}

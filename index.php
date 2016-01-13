@@ -97,7 +97,7 @@
                     </li>
                     <li>
                         <h3>Lineage II</h3>
-                        <a href="/rework">Купить ПО</a><br/>
+                        <a href="/programs">Купить ПО</a><br/>
                     </li>
 
                 </ul>
@@ -105,11 +105,11 @@
                 <ul class="other-games">
                     <li>
                         <h3>Dota 2</h3>
-                        <a href="/rework">Купить Предметы</a>
+                        <a href="/dota">Купить Предметы</a>
                     </li>
                     <li>
                         <h3>CS : GO</h3>
-                        <a href="/rework">Купить Предметы</a>
+                        <a href="/csgo">Купить Предметы</a>
                     </li>
                 </ul>
             </div>

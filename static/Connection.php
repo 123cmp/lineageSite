@@ -4,7 +4,7 @@ class Connection {
 
     private static $instance = null;
 
-    private function __construct() {
+    public function __construct() {
         $this->MYSQL_SERVER = '127.0.0.1';
         $this->MYSQL_USER = 'root';
         $this->MYSQL_PASSWORD = '';

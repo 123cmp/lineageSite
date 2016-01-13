@@ -14,6 +14,26 @@ function getGameCoefficients($link, $game_name, $col) {
     return sqlResultToArray($result);
 }
 
+function getDotaItems($link) {
+    $query = "SELECT * FROM dota WHERE 1";
+    $result = mysqli_query($link,$query);
+
+    if (!$result)
+        die(mysqli_error($link));
+
+    return sqlResultToArray($result);
+}
+
+function getCsItems($link) {
+    $query = "SELECT * FROM cs WHERE 1";
+    $result = mysqli_query($link, $query);
+
+    if (!$result)
+        die(mysqli_error($link));
+
+    return sqlResultToArray($result);
+}
+
 function getGameServers($link, $game_name) {
     $game_name = mysqli_real_escape_string($link, (string) $game_name);
     $query = "SELECT * FROM ".$game_name." ORDER BY id DESC";
