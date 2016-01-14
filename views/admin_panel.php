@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-header("Content-Type: text/html; charset=utf-8");
 ?>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -26,9 +25,12 @@ header("Content-Type: text/html; charset=utf-8");
                             <li><a href="../a!dmin/index.php?game=lineage_classic_rus">Lineage II classic rus</a></li>
                             <li><a href="../a!dmin/index.php?game=lineage_classic_euro">Lineage II classic euro</a></li>
                             <li><a href="../a!dmin/index.php?game=lineage_free">Lineage II free</a></li>
+                            <li><a href="../a!dmin/index.php?game=dota">DOTA 2</a></li>
+                            <li><a href="../a!dmin/index.php?game=cs">CS:GO</a></li>
                         </ul>
                     </li>
                     <li><a href="../index.php">Home</a></li>
+                    <li><a href="#">logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -36,7 +38,7 @@ header("Content-Type: text/html; charset=utf-8");
 </header>
 
 <div id="serverModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document" >
+    <div class="modal-dialog " role="document" >
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -90,8 +92,7 @@ header("Content-Type: text/html; charset=utf-8");
 
                 <th></th>
             <?php endforeach ?>
-            <th id="buttonTh"><a href="#serverModal" role="button" class="btn btn-default" data-toggle="modal">Add
-                    server</a></th>
+            <th id="buttonTh"><a href="#serverModal" role="button" id="addbtn" class="btn btn-default" data-toggle="modal">Add</a></th>
         </tr>
         </thead>
         <tbody>
@@ -103,7 +104,7 @@ header("Content-Type: text/html; charset=utf-8");
                 echo "<td>{$s[$key]}</td>";
             }
             echo "<td id=\"buttonTh\"><a class=\"btn btn-danger\"
-                                 href=\"../a!dmin/index.php?action=delete&id={$s{'id'}}\">Delete</a>
+                                 href=\"../a!dmin/index.php?action=delete&id={$s{'id'}}&game={$GLOBALS['game_name']}\">Delete</a>
             </td>";
             echo '</tr>';
         } ?>
@@ -115,5 +116,6 @@ header("Content-Type: text/html; charset=utf-8");
 <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="../scripts/Admin.js"></script>
+
 </body>
 </html>

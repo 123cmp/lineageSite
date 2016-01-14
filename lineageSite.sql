@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jan 13, 2016 at 07:22 PM
--- Server version: 5.5.46-0ubuntu0.14.04.2
--- PHP Version: 5.5.9-1ubuntu4.14
+-- Хост: 127.0.0.1
+-- Время создания: Янв 15 2016 г., 01:15
+-- Версия сервера: 5.5.25
+-- Версия PHP: 5.3.13
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `lineageSite`
+-- База данных: `lineagesite`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coefficients`
+-- Структура таблицы `coefficients`
 --
 
 CREATE TABLE IF NOT EXISTS `coefficients` (
@@ -33,154 +33,205 @@ CREATE TABLE IF NOT EXISTS `coefficients` (
   `server_id` int(11) NOT NULL,
   `game_name` varchar(44) NOT NULL,
   `col` tinyint(1) NOT NULL DEFAULT '0',
+  `game_key` text NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=188 ;
 
 --
--- Dumping data for table `coefficients`
+-- Дамп данных таблицы `coefficients`
 --
 
-INSERT INTO `coefficients` (`sum`, `cost`, `c_id`, `server_id`, `game_name`, `col`) VALUES
-(1000, 1, 54, 4, 'lineage_free', 0),
-(1000000, 12, 55, 4, 'lineage_free', 0),
-(1000000000, 123, 56, 4, 'lineage_free', 0),
-(1, 250, 58, 4, 'lineage_free', 1),
-(1000, 1, 59, 40, 'lineage_rus', 0),
-(1000000, 23, 60, 40, 'lineage_rus', 0),
-(1000000000, 44, 61, 40, 'lineage_rus', 0),
-(1000, 1, 62, 41, 'lineage_rus', 0),
-(1000000, 0, 63, 41, 'lineage_rus', 0),
-(1000000000, 23, 64, 41, 'lineage_rus', 0),
-(1000, 123, 65, 42, 'lineage_rus', 0),
-(1000000, 123, 66, 42, 'lineage_rus', 0),
-(1000000000, 123, 67, 42, 'lineage_rus', 0),
-(1000, 1, 68, 43, 'lineage_rus', 0),
-(1000000, 23, 69, 43, 'lineage_rus', 0),
-(1000000000, 44, 70, 43, 'lineage_rus', 0),
-(1000, 1, 71, 5, 'lineage_free', 0),
-(1000000, 1, 72, 5, 'lineage_free', 0),
-(1000000000, 12, 73, 5, 'lineage_free', 0),
-(1, 2222, 75, 5, 'lineage_free', 1),
-(1000, 12, 76, 6, 'lineage_free', 0),
-(1000000, 11, 77, 6, 'lineage_free', 0),
-(1000000000, 10, 78, 6, 'lineage_free', 0),
-(1, 44, 80, 6, 'lineage_free', 1);
+INSERT INTO `coefficients` (`sum`, `cost`, `c_id`, `server_id`, `game_name`, `col`, `game_key`) VALUES
+(1000, 123, 111, 13, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000, 123, 112, 13, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000000, 123, 113, 13, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000, 123, 114, 4, 'lineage_classic_rus', 0, 'cl_rus'),
+(1000000, 123, 115, 4, 'lineage_classic_rus', 0, 'cl_rus'),
+(1000000000, 123, 116, 4, 'lineage_classic_rus', 0, 'cl_rus'),
+(1000, 11, 117, 14, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000, 11, 118, 14, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000000, 0, 119, 14, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000, 12, 120, 15, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000, 12, 121, 15, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000000, 12, 122, 15, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000, 22, 123, 7, 'lineage_free', 0, 'free'),
+(1000000, 22, 124, 7, 'lineage_free', 0, 'free'),
+(1000000000, 22, 125, 7, 'lineage_free', 0, 'free'),
+(1, 22, 126, 7, 'lineage_free', 0, 'free'),
+(1, 22, 127, 7, 'lineage_free', 1, 'free'),
+(1000, 23, 128, 8, 'lineage_free', 0, 'free'),
+(1000000, 23, 129, 8, 'lineage_free', 0, 'free'),
+(1000000000, 23, 130, 8, 'lineage_free', 0, 'free'),
+(1, 232, 131, 8, 'lineage_free', 0, 'free'),
+(1, 232, 132, 8, 'lineage_free', 1, 'free'),
+(1000, 24, 133, 9, 'lineage_free', 0, 'free'),
+(1000000, 24, 134, 9, 'lineage_free', 0, 'free'),
+(1000000000, 24, 135, 9, 'lineage_free', 0, 'free'),
+(1, 244, 136, 9, 'lineage_free', 0, 'free'),
+(1, 244, 137, 9, 'lineage_free', 1, 'free'),
+(1000, 55, 138, 10, 'lineage_free', 0, 'free'),
+(1000000, 55, 139, 10, 'lineage_free', 0, 'free'),
+(1000000000, 55, 140, 10, 'lineage_free', 0, 'free'),
+(1, 555, 141, 10, 'lineage_free', 0, 'free'),
+(1, 555, 142, 10, 'lineage_free', 1, 'free'),
+(1000, 123, 143, 11, 'lineage_free', 0, 'free'),
+(1000000, 123, 144, 11, 'lineage_free', 0, 'free'),
+(1000000000, 123, 145, 11, 'lineage_free', 0, 'free'),
+(1, 123, 146, 11, 'lineage_free', 0, 'free'),
+(1, 123, 147, 11, 'lineage_free', 1, 'free'),
+(1000, 123, 148, 12, 'lineage_free', 0, 'free'),
+(1000000, 123, 149, 12, 'lineage_free', 0, 'free'),
+(1000000000, 123, 150, 12, 'lineage_free', 0, 'free'),
+(1, 123, 151, 12, 'lineage_free', 0, 'free'),
+(1, 123, 152, 12, 'lineage_free', 1, 'free'),
+(1000, 14, 153, 13, 'lineage_free', 0, 'free'),
+(1000000, 14, 154, 13, 'lineage_free', 0, 'free'),
+(1000000000, 14, 155, 13, 'lineage_free', 0, 'free'),
+(1, 144, 156, 13, 'lineage_free', 1, 'free'),
+(1000, 22, 161, 15, 'lineage_free', 0, 'free'),
+(1000000, 22, 162, 15, 'lineage_free', 0, 'free'),
+(1000000000, 22, 163, 15, 'lineage_free', 0, 'free'),
+(1, 222, 164, 15, 'lineage_free', 1, 'free'),
+(1000, 44, 165, 16, 'lineage_free', 0, 'free'),
+(1000000, 44, 166, 16, 'lineage_free', 0, 'free'),
+(1000000000, 44, 167, 16, 'lineage_free', 0, 'free'),
+(1, 444, 168, 16, 'lineage_free', 1, 'free'),
+(1000, 55, 169, 16, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000, 55, 170, 16, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000, 55, 171, 17, 'lineage_classic_euro', 0, 'cl_eu'),
+(1000000, 55, 172, 17, 'lineage_classic_euro', 0, 'cl_eu'),
+(0, 0, 179, 0, 'dota', 0, ''),
+(12333, 0, 180, 0, '<?= $GLOBALS[''game_name'']?>', 0, ''),
+(123, 0, 181, 0, '<?= $GLOBALS[''game_name'']?>', 0, ''),
+(21, 0, 182, 0, '<?= $GLOBALS[''game_name'']?>', 0, ''),
+(1000, 123, 183, 47, 'lineage_rus', 0, 'rus'),
+(1000000, 123, 184, 47, 'lineage_rus', 0, 'rus'),
+(1000000000, 123, 185, 47, 'lineage_rus', 0, 'rus'),
+(100, 0, 186, 0, '<?= $GLOBALS[''game_name'']?>', 0, ''),
+(0, 0, 187, 0, '<?= $GLOBALS[''game_name'']?>', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cs`
+-- Структура таблицы `cs`
 --
 
 CREATE TABLE IF NOT EXISTS `cs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `cost` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cost` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `cs`
+-- Дамп данных таблицы `cs`
 --
 
-INSERT INTO `cs` (`name`, `cost`) VALUES
-('knife', '100$');
+INSERT INTO `cs` (`id`, `name`, `cost`) VALUES
+(1, 'knife', '100$'),
+(2, 'pistolet', '10k baksov');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dota`
+-- Структура таблицы `dota`
 --
 
 CREATE TABLE IF NOT EXISTS `dota` (
-  `name` varchar(128) NOT NULL,
-  `cost` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) CHARACTER SET utf8 NOT NULL,
+  `cost` varchar(128) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `dota`
+-- Дамп данных таблицы `dota`
 --
 
-INSERT INTO `dota` (`name`, `cost`) VALUES
-('set', '300$'),
-('other set', '400$');
+INSERT INTO `dota` (`id`, `name`, `cost`) VALUES
+(1, 'set', '300$'),
+(2, 'other set', '400$'),
+(4, 'set', '123');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lineage_classic_euro`
+-- Структура таблицы `lineage_classic_euro`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_classic_euro` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `server_name` varchar(32) NOT NULL,
+  `key` varchar(12) NOT NULL DEFAULT 'cl_eu',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+
+--
+-- Дамп данных таблицы `lineage_classic_euro`
+--
+
+INSERT INTO `lineage_classic_euro` (`id`, `server_name`, `key`) VALUES
+(13, 'Qwerty', 'cl_eu'),
+(14, 'eu 11', 'cl_eu'),
+(15, 'eu 12', 'cl_eu');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lineage_classic_rus`
+-- Структура таблицы `lineage_classic_rus`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_classic_rus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `server_name` varchar(32) NOT NULL,
+  `key` varchar(12) NOT NULL DEFAULT 'cl_rus',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `lineage_classic_rus`
+-- Дамп данных таблицы `lineage_classic_rus`
 --
 
-INSERT INTO `lineage_classic_rus` (`id`, `server_name`) VALUES
-(1, 'Valera x10');
+INSERT INTO `lineage_classic_rus` (`id`, `server_name`, `key`) VALUES
+(4, 'Qwerty', 'cl_rus');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lineage_free`
+-- Структура таблицы `lineage_free`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_free` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `server_name` varchar(32) NOT NULL,
+  `key` varchar(12) NOT NULL DEFAULT 'free',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `lineage_free`
---
-
-INSERT INTO `lineage_free` (`id`, `server_name`) VALUES
-(4, 'Valera x10'),
-(5, '12'),
-(6, 'Averia x12');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lineage_rus`
+-- Структура таблицы `lineage_rus`
 --
 
 CREATE TABLE IF NOT EXISTS `lineage_rus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `server_name` varchar(32) NOT NULL,
+  `key` varchar(12) NOT NULL DEFAULT 'rus',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
--- Dumping data for table `lineage_rus`
+-- Дамп данных таблицы `lineage_rus`
 --
 
-INSERT INTO `lineage_rus` (`id`, `server_name`) VALUES
-(40, 'йцуцу'),
-(41, 'Valera x10'),
-(42, 'Valera x10'),
-(43, 'Averia');
+INSERT INTO `lineage_rus` (`id`, `server_name`, `key`) VALUES
+(47, 'rus', 'rus');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Структура таблицы `orders`
 --
 
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -197,20 +248,6 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `col` tinyint(1) NOT NULL,
   PRIMARY KEY (`o_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`o_id`, `game`, `server`, `money`, `adena`, `nickname`, `contact`, `comment`, `status`, `time`, `col`) VALUES
-(18, 'lineage_rus', 'Valera x100', 111, 1055, 'sfsdf', 'sdfsdf', 'qweqweq', 'done', '2016-01-04 09:39:25', 0),
-(19, 'lineage_rus', 'Averia x100500', 1233, 287289, 'Valera', 'rewq', 'admin-loh', 'new', '2016-01-04 09:01:08', 0),
-(20, 'lineage_rus', 'Averia x100500', 1233, 287289, 'Valera', 'rewq', 'admin-loh', 'done', '2016-01-04 09:03:41', 0),
-(22, 'lineage_rus', '11111', 247, 1233, 'qwe', 'qwe', 'qqwe', 'done', '2016-01-04 13:53:15', 0),
-(23, 'lineage_rus', 'Averia', 1111, 1111, '111', '111', '111111111', 'new', '2016-01-11 16:06:26', 0),
-(24, 'lineage_free', 'Averia x12', 10, 440, 'qwe', 'qwe', 'qwe', 'new', '2016-01-11 16:24:16', 1),
-(25, 'lineage_free', 'Averia x12', 10, 440, 'qweq', 'qweq', 'qweq', 'new', '2016-01-11 16:24:33', 1),
-(26, 'lineage_free', 'Averia x12', 12003, 144036, 'asad', 'asd', 'asdasd', 'new', '2016-01-11 16:24:57', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

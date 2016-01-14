@@ -77,5 +77,5 @@ if(isset($_GET['orders'])){
 } else {
 
     $servers = servers_all($link, $game_name);
-    include("../views/admin_panel.php");
+    include_once("../views/admin_panel.php");
 }

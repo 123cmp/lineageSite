@@ -2,8 +2,21 @@
 
 function servers_all($link, $game_name)
 {
+ if($game_name == 'dota' || $game_name == 'cs'){
 
     $query = "SELECT * FROM " . $game_name;
+    $result = mysqli_query($link, $query);
+    if (!$result)
+        die(mysqli_error($link));
+    $items = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+
+        $items[] = $row;
+    }
+
+    return $items;
+}
+    $query = "SELECT id,server_name FROM " . $game_name;
     $result = mysqli_query($link, $query);
     if (!$result)
         die(mysqli_error($link));
@@ -17,7 +30,8 @@ function servers_all($link, $game_name)
         $id[] = $s['id'];
     }
     if($game_name == 'lineage_free'){
-        $query = "SELECT sum,cost,col FROM coefficients  INNER JOIN " . $game_name . " ON coefficients.server_id = " . $game_name . ".id WHERE coefficients.server_id = " . $game_name . ".id";
+        $query = "SELECT sum,cost,col FROM coefficients  INNER JOIN " . $game_name . " ON coefficients.server_id = " . $game_name . ".id WHERE coefficients.server_id = " . $game_name . ".id".
+        " AND coefficients.game_key = $game_name.key";
         $result = mysqli_query($link, $query);
         if (!$result)
             die(mysqli_error($link));
@@ -26,6 +40,7 @@ function servers_all($link, $game_name)
 
             $coef[] = $row;
         }
+
         $v = 0;
         $k = array("1k", "1kk", "1kkk");
         if(!isset($servers))
@@ -46,7 +61,8 @@ function servers_all($link, $game_name)
             }
         }
     } else {
-    $query = "SELECT sum,cost FROM coefficients  INNER JOIN " . $game_name . " ON coefficients.server_id = " . $game_name . ".id WHERE coefficients.server_id = " . $game_name . ".id";
+    $query = "SELECT sum,cost FROM coefficients  INNER JOIN " . $game_name . " ON coefficients.server_id = " . $game_name . ".id WHERE coefficients.server_id = " . $game_name . ".id".
+        " AND coefficients.game_key = ".$game_name. ".key";
     $result = mysqli_query($link, $query);
     if (!$result)
         die(mysqli_error($link));
@@ -76,7 +92,7 @@ function servers_all($link, $game_name)
 
 function orders_get($link)
 {
-    $query = "SELECT * FROM orders";
+    $query = "SELECT * FROM orders ORDER BY o_id DESC";
     $result = mysqli_query($link, $query);
     if (!$result)
         die(mysqli_error($link));
@@ -107,6 +123,13 @@ function orders_get($link)
 
 function server_add($link, $data){
 
+    if($data['game_name'] == 'dota' || $data['game_name'] == 'cs'){
+
+        $t = "INSERT INTO " . $data['game_name'] . " (name, cost) VALUES ('%s', '%s')";
+        $query = sprintf($t, mysqli_real_escape_string($link, $data['name']),
+            mysqli_real_escape_string($link, $data['cost']));
+        $result = mysqli_query($link, $query);
+    }
     $server_name = trim($data['server_name']);
 
     $t = "INSERT INTO " . $data['game_name'] . " (server_name) VALUES ('%s')";
@@ -114,25 +137,36 @@ function server_add($link, $data){
     $result = mysqli_query($link, $query);
 
     $id = mysqli_insert_id($link);
-
+    $key = "";
+    if($data['game_name'] == "lineage_rus"){
+        $key = "rus";
+    } elseif($data['game_name'] == "lineage_classic_rus"){
+        $key = "cl_rus";
+    } elseif($data['game_name'] == "lineage_classic_euro"){
+        $key = "cl_eu";
+    } elseif($data['game_name'] == "lineage_free"){
+        $key = "free";
+    }
 
     foreach($data['coef'] as $coef){
         $id = (int)$id;
-        $t = "INSERT INTO coefficients (server_id, sum, cost, game_name) VALUES ('%d', '%f', '%f', '%s')";
+        $t = "INSERT INTO coefficients (server_id, sum, cost, game_name, game_key) VALUES ('%d', '%f', '%f', '%s', '%s')";
         $query = sprintf($t, mysqli_real_escape_string($link, $id),
             mysqli_real_escape_string($link, $coef['sum']),
             mysqli_real_escape_string($link, $coef['cost']),
-            mysqli_real_escape_string($link, $data['game_name']));
+            mysqli_real_escape_string($link, $data['game_name']),
+            mysqli_real_escape_string($link, $key));
         $result = mysqli_query($link, $query);
 
     }
     if(isset($data['col_coef'])){
-    $t = "INSERT INTO coefficients (server_id, sum, cost, game_name, col) VALUES ('%d', '%f', '%f', '%s', '%d')";
+    $t = "INSERT INTO coefficients (server_id, sum, cost, game_name, col, game_key) VALUES ('%d', '%f', '%f', '%s', '%d', '%s')";
         $query = sprintf($t, mysqli_real_escape_string($link, $id),
             mysqli_real_escape_string($link, 1),
             mysqli_real_escape_string($link, $data['col_coef']),
             mysqli_real_escape_string($link, $data['game_name']),
-            mysqli_real_escape_string($link, 1));
+            mysqli_real_escape_string($link, 1),
+            mysqli_real_escape_string($link, $key));;
         $result = mysqli_query($link, $query);
     }   
 
@@ -167,17 +201,23 @@ function server_edit($link, $id, $game_name, $server_name, $_1kk, $_100kk, $_100
 function server_delete($link, $id, $game_name)
 {
     $id = (int)$id;
-    if ($id == 0)
-        return false;
+
+    if ($game_name == 'orders'){
+        $query = "DELETE FROM orders WHERE o_id=".$id;
+        $result = mysqli_query($link, $query);
+
+        return;
+    } else{
     $query = sprintf("DELETE FROM " . $game_name . " WHERE id=%d", $id);
     $result = mysqli_query($link, $query);
 
-    $query = sprintf("DELETE FROM coefficients WHERE server_id=%d", $id);
+    if($game_name == 'dota' || $game_name == 'cs'){
+        return ;
+    }
+    $query = "DELETE FROM coefficients WHERE server_id='".$id ."' AND game_name='".$game_name."'";
     $result = mysqli_query($link, $query);
 
-    if (!$result)
-        die(mysqli_error($link));
-    return mysqli_affected_rows($link);
+    }
 }
 
 function set_status($link, $id, $status){

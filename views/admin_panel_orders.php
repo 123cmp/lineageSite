@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-header("Content-Type: text/html; charset=utf-8");
+
 ?>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -26,9 +26,12 @@ header("Content-Type: text/html; charset=utf-8");
                             <li><a href="../a!dmin/index.php?game=lineage_classic_rus">Lineage II classic rus</a></li>
                             <li><a href="../a!dmin/index.php?game=lineage_classic_euro">Lineage II classic euro</a></li>
                             <li><a href="../a!dmin/index.php?game=lineage_free">Lineage II free</a></li>
+                            <li><a href="../a!dmin/index.php?game=dota">DOTA 2</a></li>
+                            <li><a href="../a!dmin/index.php?game=cs">CS:GO</a></li>
                         </ul>
                     </li>
                     <li><a href="../index.php">Home</a></li>
+                    <li><a href="#">logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -60,15 +63,15 @@ header("Content-Type: text/html; charset=utf-8");
                         $status = "done";
                     } else $status = "new";
                     echo "<td><select class=\"status\">
-                    <option id=\"{$s["o_id"]}\">{$s[$key]}</option>
-                    <option id=\"{$s['o_id']}\">$status</option>
+                    <option id=\"{$s["id"]}\">{$s[$key]}</option>
+                    <option id=\"{$s['id']}\">$status</option>
                     </select></td>";
                 } else
 
                 echo "<td>{$s[$key]}</td>";
             }
             echo "<td id=\"buttonTh\"><a class=\"btn btn-danger\"
-                                 href=\"../a!dmin/index.php?action=delete&id={$s{'o_id'}}\">Delete</a>
+                                 href=\"../a!dmin/index.php?action=delete&id={$s{'id'}}&game=orders\">Delete</a>
             </td>";
             echo '</tr>';
         } ?>

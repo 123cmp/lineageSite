@@ -1,20 +1,23 @@
 $(document).ready(function(){
 
-    $('#dataTable').DataTable({
-    	"lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
-    	"language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Russian.json"
-        }
-    });
-
     if($('#gameName').val() == 'lineage_free'){
 
         $('#modalBody').append("<div class=\"form-group coef\">\n<label class=\"modallbl\" for=\"sum\">Col</label>"+
             "\n<input type=\"hidden\" id=\"sum\" class=\"form-control form-item\" value=\"1\" required>"+
             "\n<label class=\"modallbl\" for=\"cost\">Coefficient</label>\n<input type=\"number\" id=\"col_cost\""+
             "class=\"form-control form-item\"required>\n</div>");
-    }
+    } else if($('#gameName').val() == 'dota' || $('#gameName').val() == 'cs'){
 
+        $('#modalBody').html("<div class=\"form-inline form-group\">"+
+        "<label for=\"inputName\">Item Name</label>"+
+        "<input type=\"text\" id=\"inputName\" class=\"form-control form-item\" required>"+
+            "<input type=\"hidden\" id=\"gameName\" value=\"<?= $GLOBALS['game_name']?>\">"+
+            "</div>"+
+            "<div class=\"form-group coef\">"+
+            "<label class=\"modallbl\" for=\"cost\">Cost</label>"+
+            "<input type=\"text\" id=\"itemCost\" class=\"form-control form-item\" name=\"cost\" required></div>");
+
+    }
 
     $('#addCoef').click(function(){
     	
@@ -28,6 +31,15 @@ $(document).ready(function(){
     $('#Save').click(function(){
         var data;
         var result = {};
+
+        if($('#tableName').text() == 'dota' || $('#tableName').text() == 'cs'){
+
+            result.cost = $('#itemCost').val();
+            result.name = $('#inputName').val();
+            result.game_name = $('#tableName').text();
+
+        } else{
+
         result.coef = [];
         $('#modalBody .coef').each(function(i, v) {
             var inputs = $(v).find('input');
@@ -41,11 +53,15 @@ $(document).ready(function(){
         result.col_coef = $('#col_cost').val();
         result.server_name = $('#inputName').val();
         result.game_name = $('#gameName').val();
-
+        if(result.game_name == 'lineage_free'){
+            result.coef.pop();
+        }
+        }
         data = JSON.stringify(result);
         console.log(data);
+
         $.ajax({
-            url: '../admin/index.php?action=add',
+            url: '../a!dmin/index.php?action=add',
             method: 'POST',
             data: {"data" : data},
             dataType : 'JSON',
@@ -53,7 +69,7 @@ $(document).ready(function(){
                 console.log(data);
             }
         });
-        //$(location).attr('href',"../admin/index.php?game="+result.game_name);
+       // $(location).attr('href',"../a!dmin/index.php?game="+result.game_name);
         //location.href = "../admin/index.php?game="+result.game_name;
         //window.location.reload()
     });
@@ -71,11 +87,15 @@ $(document).ready(function(){
         method: 'POST',
         data: {"data" : data},
 
-        url: '../admin/index.php?orders=true'
+        url: '../a!dmin/index.php?orders=true'
         });
     });
 
-
-
+    $('#dataTable').DataTable({
+        "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Russian.json"
+        }
+    });
 
 });
