@@ -206,18 +206,19 @@ function server_delete($link, $id, $game_name)
         $query = "DELETE FROM orders WHERE o_id=".$id;
         $result = mysqli_query($link, $query);
 
-        return;
+    } elseif($game_name == 'dota' || $game_name == 'cs'){
+
+    	$query = sprintf("DELETE FROM " . $game_name . " WHERE id=%d", $id);
+    	$result = mysqli_query($link, $query);
+
     } else{
     $query = sprintf("DELETE FROM " . $game_name . " WHERE id=%d", $id);
     $result = mysqli_query($link, $query);
 
-    if($game_name == 'dota' || $game_name == 'cs'){
-        return ;
-    }
     $query = "DELETE FROM coefficients WHERE server_id='".$id ."' AND game_name='".$game_name."'";
     $result = mysqli_query($link, $query);
-
-    }
+	}	
+    
 }
 
 function set_status($link, $id, $status){

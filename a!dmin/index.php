@@ -43,7 +43,13 @@ if ($action == 'add') {
     $id = ($_GET['id']);
 
     $server = server_delete($link, $id, $game_name);
-    header("Location: index.php?game=" . $game_name);
+
+    if($game_name == 'orders'){
+
+        header("Location: index.php?orders=true");
+    } else {
+        header("Location: index.php?game=" . $game_name);
+    }
 
 } else if ($action == 'edit') {
 
